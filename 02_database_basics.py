@@ -64,6 +64,7 @@
 #    - delete rows from a table
 #    - update one or more attributes of one or more rows in a table
 #    - retrieve and possibly transform rows combing from one or more tables
+#  - this section will mostly focus on reading data (last point)
 
 #
 # ## main abstraction: tables
@@ -79,6 +80,29 @@
 #    - cannot have two rows with the same primary key
 #  - _foreign keys_ are used to refer to rows of other tables
 #    - e.g. a table with grades will have foreign keys that point to the student and the course
+
+# ## domain
+#  - good database design has
+#    - one table for each "entity" in the domain
+#    - relationships between entities
+#  - types of relationships:
+#    - 1 to 1 (can be stored in either entity, but NOT BOTH, or in a separate talbe)
+#    - 1 to n (must be stored in the entity with cardinality "1", or in a separate table)
+#    - m to n (requires a separate table)  
+#  - example:
+#    - entity students
+#      - relationship mentor (suppose 1 to 1), three possibilities
+#        - have a column "mentor"
+#        - have a column "mentee"
+#        - have a new table (mentor, mentee)
+#    - entity courses
+#    - entity professors
+#    - relationship grades (m to n -> requires a table)
+#      - student, course, grade
+#    - relationship teaches (m to n -> requires a table)
+#      - professors, courses
+#  - sql shines when "navigating" across relationships
+#    - example: for each student, find the professor that gave them the highest grade
 
 # ## anatomy of a select query
 #  - "select" queries are used to retrieve data from the database
@@ -134,6 +158,11 @@
 
 # ## examples of complex queries
 #  - TODO
+
+# ## programmatically interfacing to a RDBMS
+#  - connections
+#  - cursors
+#  - sql injection and proper escaping
 
 # ## transactions and ACID
 #  - heh
