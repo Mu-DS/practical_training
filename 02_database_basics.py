@@ -44,22 +44,108 @@
 # + Collapsed="false"
 
 
+
 # + [markdown] Collapsed="false"
 # ### Efficiently reading last lines
 
 # + Collapsed="false"
 
 
+
 # + [markdown] Collapsed="false"
 # # SQL
+# -
 
-# + Collapsed="false"
+# ## intro
+#  - sql is a declarative programming language to manipulate tables
+#  - declarative: no functions or loops, just _declare_ what you need and the runtime will figure out how to compute it
+#  - sql queries can be used to
+#    - insert new rows into a table
+#    - delete rows from a table
+#    - update one or more attributes of one or more rows in a table
+#    - retrieve and possibly transform rows combing from one or more tables
 
+#
+# ## main abstraction: tables
+#  - a table is a _set_ of tuples (rows)
+#    - no two rows are the same
+#  - rows are distinguished by _primary keys_
+#    - primary key: smallest set of attributes that uniquely identifies a row, examples:
+#      - student ID (one attribute)
+#      - first name, last name, birth date, place of birth (four attributes)
+#    - the primary key is a property of each table
+#      - all rows in a table use the same attributes as primary key
+#      - but different tables can have different primary keys
+#    - cannot have two rows with the same primary key
+#  - _foreign keys_ are used to refer to rows of other tables
+#    - e.g. a table with grades will have foreign keys that point to the student and the course
+
+# ## anatomy of a select query
+#  - "select" queries are used to retrieve data from the database
+#  - must have SELECT+FROM
+#  - WHERE and GROUPBY optional
+#  - HAVING optional, must be used with GROUP BY
+#  - note on GROUP BY: eventually you must have only one row per group
+#
+# ```
+# SELECT <columns and transformation>
+# FROM <source table(s)>
+# [WHERE <filter rows coming from source table(s)>]
+# [GROUP BY <create groups of rows>
+# [HAVING <filter groups>]]
+# ```
+
+# ## select query untangled
+#  - confusingly, order of execution is different than order of writing:
+#    1. FROM: first, gather all input rows from all tables
+#    2. WHERE: next, remove all rows not matching the predicate
+#    3. GROUP BY: now, if needed, create groups of rows
+#    4. HAVING: then, remove all groups that do not match the predicate
+#    5. SELECT: finally, produce output rows
+
+# ## FROM: source tables
+#  - you can specify one or more tables in the from clause
+#  - FROM will do a cross-product of all tuples of all tables
+#  - in almost all cases, you only want a small subset of the cross-product
+#    - use WHERE to remove tuples that do not make sense
+#  - special case: JOIN
+#    - inner/left/right/outer
+#  - possible to give aliases to tables that can be used in the remainder of the query
+
+# ## WHERE: tuple filter
+#  - specify a boolean condition that is evaluated for each row produced by the FROM
+#  - all rows where this evaluates to false are discarded
+
+# ## GROUP BY: create groups of rows
+#  - must specify one or more columns, possibly with transformation
+#  - all rows that have the same values for all (transformed) column(s) end up in the same group
+
+# ## HAVING: filter groups
+#  - another boolean condition applied to each group
+#  - example: filter by group size, min/max/mean of something..
+
+# ## SELECT: produce output columns
+#  - all the surviving groups/rows are transformed
+#  - select only a subset of attributes, or transform values
+#  - careful: each group must be collapsed into a row
+
+# ## subqueries and CTE
+#  - to make things messy
+
+# ## examples of complex queries
+#  - TODO
+
+# ## transactions and ACID
+#  - heh
+
+# ## advanced: query plans and indexing
+#  - why
 
 # + [markdown] Collapsed="false"
 # # Non-SQL
 
 # + Collapsed="false"
+
 
 
 # + [markdown] Collapsed="false"
@@ -69,6 +155,7 @@
 # ## Graph Theory
 
 # + Collapsed="false"
+
 
 
 # + [markdown] Collapsed="false"
