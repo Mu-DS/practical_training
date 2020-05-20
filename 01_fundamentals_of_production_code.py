@@ -9,9 +9,9 @@
 #       format_version: '1.5'
 #       jupytext_version: 1.4.2
 #   kernelspec:
-#     display_name: py38
+#     display_name: Python 3
 #     language: python
-#     name: py38
+#     name: python3
 # ---
 
 # + [markdown] Collapsed="false"
@@ -80,6 +80,7 @@
 #   - linter configuration file
 
 # + Collapsed="false"
+
 
 
 # + [markdown] Collapsed="false"
@@ -232,6 +233,7 @@
 #     "Listen": redirects data from the port following, through the secure tunnel to the destination address and port following, e.g. localhost:8888. 
 
 # + Collapsed="false"
+
 
 
 # + [markdown] Collapsed="true" toc-hr-collapsed=true
@@ -417,12 +419,14 @@ import this
 # + Collapsed="false"
 
 
+
 # + [markdown] Collapsed="true"
 # #### Comments are important, but Documentation and schematics are even more important
 #
 # <img src="https://preview.redd.it/jm8b5iwoq6p11.png?width=640&crop=smart&auto=webp&s=f4f484b59333e96555d8076b13dfbc2f8fc2b5b3" width=400>
 
 # + Collapsed="false"
+
 
 
 # + [markdown] Collapsed="false"
@@ -531,6 +535,7 @@ import this
 # + Collapsed="false"
 
 
+
 # + [markdown] Collapsed="true"
 # #### PEP8 is not definite
 
@@ -593,7 +598,9 @@ f2 = list(map(lambda i: _contains_axis(axes, i, rank), dims))
 # + Collapsed="false"
 
 
+
 # + Collapsed="false"
+
 
 
 # + [markdown] Collapsed="false"
@@ -621,10 +628,12 @@ extrapolation_map[extrapolation]
 # + Collapsed="false"
 
 
+
 # + [markdown] Collapsed="false"
 # https://access.redhat.com/blogs/766093/posts/2802001
 
 # + Collapsed="false"
+
 
 
 # + [markdown] Collapsed="true"
@@ -647,6 +656,7 @@ extrapolation_map[extrapolation]
 # ```
 
 # + Collapsed="false"
+
 
 
 # + [markdown] Collapsed="true"
@@ -827,6 +837,7 @@ extrapolation_map[extrapolation]
 # + Collapsed="false"
 
 
+
 # + [markdown] Collapsed="false"
 # ##### Sphinx
 
@@ -847,6 +858,7 @@ extrapolation_map[extrapolation]
 # ```
 
 # + Collapsed="false"
+
 
 
 # + [markdown] Collapsed="true"
@@ -905,10 +917,12 @@ extrapolation_map[extrapolation]
 # + Collapsed="false"
 
 
+
 # + [markdown] Collapsed="true"
 # ### What to 
 
 # + Collapsed="false"
+
 
 
 # + [markdown] Collapsed="true"
@@ -924,6 +938,7 @@ extrapolation_map[extrapolation]
 # ```
 
 # + Collapsed="false"
+
 
 
 # + [markdown] Collapsed="true"
@@ -947,7 +962,9 @@ extrapolation_map[extrapolation]
 # + Collapsed="false"
 
 
+
 # + Collapsed="false"
+
 
 
 # + [markdown] Collapsed="true"
@@ -982,11 +999,13 @@ extrapolation_map[extrapolation]
 # + Collapsed="false"
 
 
+
 # + [markdown] Collapsed="false"
 # ### Call Graph Creation with `pycallgraph2`
 # https://github.com/daneads/pycallgraph2
 
 # + Collapsed="false"
+
 
 
 # + [markdown] Collapsed="true"
@@ -1002,6 +1021,7 @@ extrapolation_map[extrapolation]
 #   - Maps
 
 # + Collapsed="false"
+
 
 
 # + [markdown] Collapsed="false"
@@ -1033,6 +1053,7 @@ extrapolation_map[extrapolation]
 # That is why functional programming is important to data science - it is the preferred paradigm for processing data!
 
 # + Collapsed="false"
+
 
 
 # + [markdown] Collapsed="false"
@@ -1227,13 +1248,17 @@ list(filter(lambda x: x%2, [1,2,3,4,5]))
 # + Collapsed="false"
 
 
-# + Collapsed="false"
-
 
 # + Collapsed="false"
 
 
+
 # + Collapsed="false"
+
+
+
+# + Collapsed="false"
+
 
 
 # + [markdown] Collapsed="false"
@@ -1257,8 +1282,8 @@ list(filter(lambda x: x%2, [1,2,3,4,5]))
 # + [markdown] Collapsed="false"
 # Sample Practice
 # ```bash
-# # # mkdir docs
-# # # cd docs 
+# # # # mkdir docs
+# # # # cd docs 
 # ```
 # ```bash
 # sphinx-quickstart
@@ -1276,16 +1301,19 @@ list(filter(lambda x: x%2, [1,2,3,4,5]))
 # + Collapsed="false"
 
 
+
 # + [markdown] Collapsed="false"
 # ### How to get listed on PIP / PyPI (Python Package Index)
 
 # + Collapsed="false"
 
 
+
 # + [markdown] Collapsed="false"
 # ### How to get listed on Conda
 
 # + Collapsed="false"
+
 
 
 # + [markdown] Collapsed="false"
@@ -1296,10 +1324,13 @@ list(filter(lambda x: x%2, [1,2,3,4,5]))
 # + Collapsed="false"
 
 
+
 # + Collapsed="false"
 
 
+
 # + Collapsed="false"
+
 
 
 # + [markdown] Collapsed="true"
@@ -1413,6 +1444,25 @@ list(filter(lambda x: x%2, [1,2,3,4,5]))
 # if __name__ == "__main__":
 #     cli()
 # ```
+# -
+
+# ```python
+# # NOTE ED better way:
+#
+# @click.group()
+# def cli():
+#     pass
+#
+# # note 'cli' (name of the group) instead of 'click'
+# @cli.command()
+# def initdb():
+#     pass
+#
+#
+# @cli.command()
+# def dropdb():
+#     pass
+# ```
 
 # + [markdown] Collapsed="false"
 # Commandas are activated using:
@@ -1430,6 +1480,31 @@ list(filter(lambda x: x%2, [1,2,3,4,5]))
 # Commands:
 #   dropdb
 #   initdb
+# ```
+# -
+
+# Groups can perform common computations and pass the results to the children commands via the context. From the doc:
+
+# ```python
+# @click.group()
+# @click.option('--debug/--no-debug', default=False)
+# @click.pass_context
+# def cli(ctx, debug):
+#     # ensure that ctx.obj exists and is a dict (in case `cli()` is called
+#     # by means other than the `if` block below)
+#     ctx.ensure_object(dict)
+#
+#     ctx.obj['DEBUG'] = debug
+#
+#     
+# @cli.command()
+# @click.pass_context
+# def sync(ctx):
+#     click.echo('Debug is %s' % (ctx.obj['DEBUG'] and 'on' or 'off'))
+#
+#     
+# if __name__ == '__main__':
+#     cli(obj={})
 # ```
 
 # + [markdown] Collapsed="true"
@@ -1449,6 +1524,9 @@ list(filter(lambda x: x%2, [1,2,3,4,5]))
 # @click.option('--count', default=1, help='number of greetings')
 # @click.argument('name')
 # def hello(count, name):
+#     '''
+#     Greets somebody a given number of times.
+#     '''
 #     for x in range(count):
 #         click.echo('Hello %s!' % name)
 #
@@ -1459,7 +1537,9 @@ list(filter(lambda x: x%2, [1,2,3,4,5]))
 # + [markdown] Collapsed="false"
 # ```bash
 # > python test.py --help
-# Usage: click_test.py [OPTIONS] NAME
+# Usage: test.py [OPTIONS] NAME
+#
+#   Greets somebody a given number of times.
 #
 # Options:
 #   --count INTEGER  number of greetings
@@ -1467,12 +1547,12 @@ list(filter(lambda x: x%2, [1,2,3,4,5]))
 # ```
 #
 # ```bash
-# python test.py Robin
+# > python test.py Robin
 # Hello Robin!
 # ```
 #
 # ```bash
-# python test.py Robin --count 3
+# > python test.py Robin --count 3
 # Hello Robin!
 # Hello Robin!
 # Hello Robin!
@@ -1501,6 +1581,10 @@ list(filter(lambda x: x%2, [1,2,3,4,5]))
 # - callbacks for validation or other (`callback=print_version`)
 # - displaying defaults (`show_defaults=True`)
 # - hide from help function (`hidden=True`)
+# - file argument (`type=click.File('w')`)
+#   - bonus: specifying `-` will automatically use stdin/stdout as appropriate
+# - path argument (`type=click.Path(exists=True, file_okay=False, dir_okay=True, writable=True)`)
+#   - bonus: performs some checks (above: must exists, not a file, can be written to)
 # - and more...
 
 # + [markdown] Collapsed="false"
@@ -1535,7 +1619,9 @@ list(filter(lambda x: x%2, [1,2,3,4,5]))
 # + Collapsed="false"
 
 
+
 # + Collapsed="false"
+
 
 
 # + [markdown] Collapsed="false"
@@ -1556,6 +1642,7 @@ list(filter(lambda x: x%2, [1,2,3,4,5]))
 # ```
 
 # + Collapsed="false"
+
 
 
 # + Collapsed="false"
