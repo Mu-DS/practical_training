@@ -13068,14 +13068,6 @@ ul.typeahead-list  > li > a.pull-right {
 .highlight .vm { color: #19177C } /* Name.Variable.Magic */
 .highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
     </style>
-<style type="text/css">
-    @import url("jupyter-navbar/navbar.css");
-
-div.output_subarea {
-  padding: unset;
-}
-
-    </style>
 
 
 <style type="text/css">
@@ -14064,20 +14056,20 @@ postgres=#</code></pre>
 <p>Tables:</p>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Department</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
     <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;department&#39;</span>
-    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
     <span class="n">employees</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s1">&#39;Employee&#39;</span><span class="p">,</span> <span class="n">secondary</span><span class="o">=</span><span class="s1">&#39;department_employee&#39;</span><span class="p">)</span>
 
 <span class="k">class</span> <span class="nc">Employee</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
     <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;employee&#39;</span>
-    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
     <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
     <span class="n">departments</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s1">&#39;Department&#39;</span><span class="p">,</span> <span class="n">secondary</span><span class="o">=</span><span class="s1">&#39;department_employee&#39;</span><span class="p">)</span>
 
 <span class="k">class</span> <span class="nc">DepartmentEmployee</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
     <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;department_employee&#39;</span>
-    <span class="n">department_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;department.id&#39;</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-    <span class="n">employee_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;employee.id&#39;</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">department_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;department.id&#39;</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">employee_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;employee.id&#39;</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -14159,7 +14151,7 @@ postgres=#</code></pre>
 <span class="n">c</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="s1">&#39;INSERT INTO stocks VALUES (?,?,?,?,?)&#39;</span><span class="p">,</span> <span class="n">purchases</span><span class="p">)</span>
 
 <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM stocks WHERE price&lt;? ORDER BY price&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">2000</span><span class="p">,]):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
 
 <span class="c1"># (&#39;2006-03-28&#39;, &#39;BUY&#39;, &#39;IBM&#39;, 1000, 45.0)</span>
 <span class="c1"># (&#39;2006-04-06&#39;, &#39;SELL&#39;, &#39;IBM&#39;, 500, 53.0)</span>
@@ -14221,7 +14213,7 @@ postgres=#</code></pre>
 <div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_courses</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">semester</span><span class="p">):</span>
     <span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
-        <span class="s2">&quot;SELECT * FROM Courses WHERE Semester=</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">semester</span><span class="p">)</span>
+        <span class="s2">&quot;SELECT * FROM Courses WHERE Semester={}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">semester</span><span class="p">)</span>
     <span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
 
 <span class="c1"># later on...</span>
@@ -14353,6 +14345,529 @@ postgres=#</code></pre>
 <h1 id="Non-SQL">Non-SQL<a class="anchor-link" href="#Non-SQL">&#182;</a></h1>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Topics">Topics<a class="anchor-link" href="#Topics">&#182;</a></h2><ul>
+<li>Big Data</li>
+<li>NoSQL databases</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Big-Data">Big Data<a class="anchor-link" href="#Big-Data">&#182;</a></h2><p><img src="https://media.makeameme.org/created/big-data-big-5ad56d.jpg"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="What-is-Big-Data">What is Big Data<a class="anchor-link" href="#What-is-Big-Data">&#182;</a></h2><ul>
+<li>high Volume</li>
+<li>high Velocity</li>
+<li>high Variety</li>
+<li>Veracity</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Data-Sources">Data Sources<a class="anchor-link" href="#Data-Sources">&#182;</a></h2><ul>
+<li>Social media and networks</li>
+<li>Scientific instruments</li>
+<li>Mobile devices</li>
+<li>Sensor technology and networks</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="NoSQL">NoSQL<a class="anchor-link" href="#NoSQL">&#182;</a></h2><p>What does NoSQL actually mean?
+A bit of history …</p>
+<ul>
+<li>1998: First used for a relational database that omitted usage of SQL</li>
+<li>2009: First used during a conference to advocate non-relational databases</li>
+</ul>
+<p>NoSQL is an accidental term with no precise definiƟon</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="NoSQL:-Overview">NoSQL: Overview<a class="anchor-link" href="#NoSQL:-Overview">&#182;</a></h2><p>Main objective: implement distributed state</p>
+<ul>
+<li>Different objects stored on different servers</li>
+<li>Same object replicated on different servers</li>
+</ul>
+<p>Main idea: give up some of the ACID constraints to improve performance</p>
+<p>Simple interface:</p>
+<ul>
+<li>Write (=Put): needs to write all replicas</li>
+<li>Read (=Get): may get only one</li>
+</ul>
+<p>Eventual consistency &lt;- Strong consistency</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="NoSQL-Six-key-features">NoSQL Six key features<a class="anchor-link" href="#NoSQL-Six-key-features">&#182;</a></h2><ol>
+<li>Scale horizontally “simple operations”</li>
+<li>Replicate/distribute data over many servers</li>
+<li>Simple call level interface (contrast w/ SQL)</li>
+<li>Weaker concurrency model than ACID</li>
+<li>Efficient use of distributed indexes and RAM</li>
+<li>Flexible schema</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Types-of-NoSQL-Databases">Types of NoSQL Databases<a class="anchor-link" href="#Types-of-NoSQL-Databases">&#182;</a></h2><p>Core types</p>
+<ul>
+<li>Key-value stores</li>
+<li>Document stores</li>
+<li>Wide column (column family, column oriented, …) stores</li>
+<li>Graph databases</li>
+</ul>
+<p>Non-core types</p>
+<ul>
+<li>Object databases</li>
+<li>Native XML databases</li>
+<li>RDF stores</li>
+<li>...</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Key-Value-Stores">Key-Value Stores<a class="anchor-link" href="#Key-Value-Stores">&#182;</a></h2><p>Data model</p>
+<ul>
+<li>he most simple NoSQL database type<ul>
+<li>Works as a simple hash table (mapping)</li>
+</ul>
+</li>
+<li>Key-value pairs<ul>
+<li>Key (id, idenƟfier, primary key)</li>
+<li>Value: binary object, black box for the database system</li>
+</ul>
+</li>
+</ul>
+<p>Query patterns</p>
+<ul>
+<li>Create, update or remove value for a given key</li>
+<li>Get value for a given key</li>
+</ul>
+<p>Characteristics</p>
+<ul>
+<li>Simple model ⇒ great performance, easily scaled, …</li>
+<li>Simple model ⇒ not for complex queries nor complex data</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Key-Value-Stores">Key-Value Stores<a class="anchor-link" href="#Key-Value-Stores">&#182;</a></h2><p>Suitable use cases</p>
+<ul>
+<li>Session data, user profiles, user preferences, shopping carts, …
+I.e. when values are only accessed via keys</li>
+</ul>
+<p>When not to use</p>
+<ul>
+<li>Relationships among enƟƟes</li>
+<li>Queries requiring access to the content of the value part</li>
+<li>Set operaƟons involving mulƟple key-value pairs</li>
+</ul>
+<p>Representatives</p>
+<ul>
+<li>Redis, MemcachedDB, Riak KV, Hazelcast, Ehcache, Amazon, SimpleDB, Berkeley DB, Oracle NoSQL, Infinispan, LevelDB, Ignite, Project Voldemort</li>
+<li>Multi-model: OrientDB, ArangoDB</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Key-Value-Stores">Key-Value Stores<a class="anchor-link" href="#Key-Value-Stores">&#182;</a></h2><p><img src="photos/keyvalue_example.PNG"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Key-Value-Stores-Use-cases">Key-Value Stores Use cases<a class="anchor-link" href="#Key-Value-Stores-Use-cases">&#182;</a></h2><p>Key-value data stores are ideal for storing user profiles, blog comments, product recommendations, and session information.</p>
+<ul>
+<li>Twitter uses Redis to deliver your Twitter timeline</li>
+<li>Pinterest uses Redis to store lists of users, followers, unfollowers, boards, and more</li>
+<li>Coinbase uses Redis to enforce rate limits and guarantee correctness of Bitcoin transactions</li>
+<li>Quora uses Memcached to cache results from slower, persistent databases</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Document Stores</p>
+<p>Data model</p>
+<ul>
+<li>Documents<ul>
+<li>Self-describing</li>
+<li>Hierarchical tree structures (JSON, XML, …)
+  – Scalar values, maps, lists, sets, nested documents, …</li>
+<li>Identified by a unique identifier (key, …)</li>
+</ul>
+</li>
+<li>Documents are organized into collections</li>
+</ul>
+<p>Query patterns</p>
+<ul>
+<li>Create, update or remove a document</li>
+<li>Retrieve documents according to complex query condiƟons</li>
+</ul>
+<p>Observation</p>
+<ul>
+<li>Extended key-value stores where the value part is examinable!</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Document-Stores">Document Stores<a class="anchor-link" href="#Document-Stores">&#182;</a></h2><p>Suitable use cases</p>
+<ul>
+<li>Event logging, content management systems, blogs, web, analytics, e-commerce applicaƟons, …<ul>
+<li>I.e. <em>for structured documents with similar schema</em></li>
+</ul>
+</li>
+</ul>
+<p>When not to use</p>
+<ul>
+<li><em>Set operations</em> involving mulƟple documents</li>
+<li>Design of document structure is constantly changing<ul>
+<li>I.e. when the required level of granularity would outbalance the advantages of aggregates</li>
+</ul>
+</li>
+</ul>
+<p>RepresentaƟves</p>
+<ul>
+<li>MongoDB, Couchbase, Amazon DynamoDB, CouchDB, RethinkDB, RavenDB, Terrastore</li>
+<li>Multi-model: MarkLogic, OrientDB, OpenLink Virtuoso, ArangoDB</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Document-Stores">Document Stores<a class="anchor-link" href="#Document-Stores">&#182;</a></h2><div class="highlight"><pre><span></span><span class="p">[</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;year&quot;</span> <span class="p">:</span> <span class="mi">2013</span><span class="p">,</span>
+        <span class="nt">&quot;title&quot;</span> <span class="p">:</span> <span class="s2">&quot;Turn It Down, Or Else!&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;info&quot;</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;directors&quot;</span> <span class="p">:</span> <span class="p">[</span> <span class="s2">&quot;Alice Smith&quot;</span><span class="p">,</span> <span class="s2">&quot;Bob Jones&quot;</span><span class="p">],</span>
+            <span class="nt">&quot;release_date&quot;</span> <span class="p">:</span> <span class="s2">&quot;2013-01-18T00:00:00Z&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;rating&quot;</span> <span class="p">:</span> <span class="mf">6.2</span><span class="p">,</span>
+            <span class="nt">&quot;genres&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Comedy&quot;</span><span class="p">,</span> <span class="s2">&quot;Drama&quot;</span><span class="p">],</span>
+            <span class="nt">&quot;image_url&quot;</span> <span class="p">:</span> <span class="s2">&quot;http://ia.media-imdb.com/images/N/O9ERWAU7FS797AJ7LU8HN09AMUP908RLlo5JF90EWR7LJKQ7@@._V1_SX400_.jpg&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;plot&quot;</span> <span class="p">:</span> <span class="s2">&quot;A rock band plays their music at high volumes, annoying the neighbors.&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;actors&quot;</span> <span class="p">:</span> <span class="p">[</span><span class="s2">&quot;David Matthewman&quot;</span><span class="p">,</span> <span class="s2">&quot;Jonathan G. Neff&quot;</span><span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="p">{</span>
+        <span class="nt">&quot;year&quot;</span><span class="p">:</span> <span class="mi">2015</span><span class="p">,</span>
+        <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;The Big New Movie&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;info&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&quot;plot&quot;</span><span class="p">:</span> <span class="s2">&quot;Nothing happens at all.&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;rating&quot;</span><span class="p">:</span> <span class="mi">0</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Document-Stores-Use-Cases">Document Stores Use Cases<a class="anchor-link" href="#Document-Stores-Use-Cases">&#182;</a></h2><ul>
+<li>SEGA uses MongoDB for handling 11 million in-game accounts</li>
+<li>Cisco moved its VSRM (video session and research manager) platform to Couchbase to achieve greater scalability</li>
+<li>Aer Lingus uses MongoDB with Studio 3T to handle ticketing and internal apps</li>
+<li>Built on MongoDB, The Weather Channel’s iOS and Android apps deliver weather alerts to 40 million users in real-time</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Wide-Column-Stores">Wide Column Stores<a class="anchor-link" href="#Wide-Column-Stores">&#182;</a></h2><p>Data model</p>
+<ul>
+<li><p>Column family (table)</p>
+<ul>
+<li>Table is a collectioon of similar rows (not necessarily idenƟcal)</li>
+</ul>
+</li>
+<li><p>Row</p>
+<ul>
+<li>Row is a collectioon of columns<ul>
+<li>Should encompass a group of data that is accessed together</li>
+</ul>
+</li>
+<li>Associated with a unique row key</li>
+</ul>
+</li>
+<li><p>Column</p>
+<ul>
+<li>Column consists of a column name and column value (and possibly other metadata records)</li>
+<li>Scalar values, but also flat sets, lists or maps may be allowed</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Wide-Column-Stores">Wide Column Stores<a class="anchor-link" href="#Wide-Column-Stores">&#182;</a></h2><p>Query patterns</p>
+<ul>
+<li>Create, update or remove a row within a given column family</li>
+<li>Select rows according to a row key or simple conditions</li>
+</ul>
+<p>Warning</p>
+<ul>
+<li>Wide column stores are not just a special kind of RDBMSs with a variable set of columns!</li>
+</ul>
+<p>Suitable use cases</p>
+<ul>
+<li>Event logging, content management systems, blogs, …<ul>
+<li>I.e. for structured flat data with similar schema</li>
+</ul>
+</li>
+</ul>
+<p>When not to use</p>
+<ul>
+<li>ACID transacƟons are required</li>
+<li>Complex queries: aggregaƟon (SUM, AVG, …), joining, …</li>
+<li>Early prototypes: i.e. when database design may change</li>
+</ul>
+<p>RepresentaƟves</p>
+<ul>
+<li>Apache Cassandra, Apache HBase, Apache Accumulo, Hypertable, Google Bigtable</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Wide-Column-Stores">Wide Column Stores<a class="anchor-link" href="#Wide-Column-Stores">&#182;</a></h2><p><img src="https://pandaforme.gitbooks.io/introduction-to-cassandra/content/Screen%20Shot%202016-02-24%20at%2012.24.12.png"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Wide-Column-Stores-Use-Cases">Wide Column Stores Use Cases<a class="anchor-link" href="#Wide-Column-Stores-Use-Cases">&#182;</a></h2><p>Column stores offer very high performance and a highly scalable architecture. Because they’re fast to load and query, they’ve been popular among companies and organizations dealing with big data, IoT, and user recommendation and personalization engines.</p>
+<ul>
+<li>Spotify uses Cassandra to store user profile attributes and metadata about artists, songs, etc. for better personalization</li>
+<li>Facebook initially built its revamped Messages on top of HBase, but is now also used for other Facebook services like the Nearby Friends feature and search indexing</li>
+<li>Outbrain uses Cassandra to serve over 190 billion personalized content recommendations each month</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Graph-Databases">Graph Databases<a class="anchor-link" href="#Graph-Databases">&#182;</a></h2><p>Data model</p>
+<ul>
+<li>Property graphs<ul>
+<li>Directed / undirected graphs, i.e. collecƟons of …<ul>
+<li>nodes (verƟces) for real-world enƟƟes, and</li>
+<li>relationships (edges) between these nodes</li>
+</ul>
+</li>
+<li>Both the nodes and relaƟonships can be associated with addiƟonal properƟes</li>
+</ul>
+</li>
+</ul>
+<p>Types of databases</p>
+<ul>
+<li>Non-transacƟonal = small number of very large graphs</li>
+<li>TransacƟonal = large number of small graphs</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Graph-Databases">Graph Databases<a class="anchor-link" href="#Graph-Databases">&#182;</a></h2><p>Query paƩerns</p>
+<ul>
+<li>Create, update or remove a node / relaƟonship in a graph</li>
+<li>Graph algorithms (shortest paths, spanning trees, …)</li>
+<li>General graph traversals</li>
+<li>Sub-graph queries or super-graph queries</li>
+<li>Similarity based queries (approximate matching)</li>
+</ul>
+<p>RepresentaƟves</p>
+<ul>
+<li>Neo4j, Titan, Apache Giraph, InfiniteGraph, FlockDB</li>
+<li>MulƟ-model: OrientDB, OpenLink Virtuoso, ArangoDB</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Graph-Databases">Graph Databases<a class="anchor-link" href="#Graph-Databases">&#182;</a></h2><p>Suitable use cases</p>
+<ul>
+<li>Social networks, rouƟng, dispatch, and locaƟon-based, services, recommendaƟon engines, chemical compounds, biological pathways, linguisƟc trees, …<ul>
+<li>I.e. simply for <strong>graph structures</strong></li>
+</ul>
+</li>
+</ul>
+<p>When not to use</p>
+<ul>
+<li>Extensive batch operaƟons are required<ul>
+<li>MulƟple nodes / relaƟonships are to be affected</li>
+</ul>
+</li>
+<li>Only too large graphs to be stored<ul>
+<li>Graph distribuƟon is difficult or impossible at all</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Graph-Databases">Graph Databases<a class="anchor-link" href="#Graph-Databases">&#182;</a></h2><p>The image below shows how a relational database like MySQL works, which use memory-intensive and more complicated join operations to search entire tables to find a match:</p>
+<p><img src="https://s3.amazonaws.com/dev.assets.neo4j.com/wp-content/uploads/from_relational_model.png"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Graph-Databases">Graph Databases<a class="anchor-link" href="#Graph-Databases">&#182;</a></h2><p>Compare that to a graph database, which already predetermines relationships based on connected nodes, making queries much faster and more economical.</p>
+<p><img src="https://s3.amazonaws.com/dev.assets.neo4j.com/wp-content/uploads/relational_to_graph.png"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Graph-Databases-Use-Cases">Graph Databases Use Cases<a class="anchor-link" href="#Graph-Databases-Use-Cases">&#182;</a></h2><p>Graph databases are great for establishing data relationships especially when dealing with large data sets. They offer blazing fast query performance that relational databases cannot compete with, especially as data grows much deeper.</p>
+<ul>
+<li>Walmart uses Neo4j to provide customers personalized, relevant product recommendations and promotions</li>
+<li>Medium uses Neo4j to build their social graph to enhance content personalization</li>
+<li>Cisco uses Neo4j to mine customer support cases to anticipate bugs</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
