@@ -13205,7 +13205,7 @@ a.anchor-link {
 <h1 id="Data-Management-and-Database-Basics">Data Management and Database Basics<a class="anchor-link" href="#Data-Management-and-Database-Basics">&#182;</a></h1>
 </div>
 </div>
-</div></section></section><section><section>
+</div><div class="fragment">
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13213,27 +13213,27 @@ a.anchor-link {
 
 </div>
 </div>
-</div></section></section><section><section>
+</div></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Overview">Overview<a class="anchor-link" href="#Overview">&#182;</a></h2><ol>
 <li>Pre-SQL  (Robin)</li>
-<li>SQL databases  (/Emilio)</li>
+<li>SQL databases  (Emilio)</li>
 <li>Non-SQL databases  (Ali)</li>
-<li>Porject (Ali)</li>
+<li>Graph databases  (Simon, Day 5)</li>
 </ol>
 
 </div>
 </div>
-</div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Pre-SQL">Pre-SQL<a class="anchor-link" href="#Pre-SQL">&#182;</a></h1>
 </div>
 </div>
-</div>
+</div><div class="fragment">
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13244,34 +13244,1997 @@ a.anchor-link {
 
 </div>
 </div>
-</div>
+</div></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Working-with-CSV-files">Working with CSV files<a class="anchor-link" href="#Working-with-CSV-files">&#182;</a></h2>
 </div>
 </div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Comma-Separated-Values-(CSV)-Theory">Comma Separated Values (CSV) Theory<a class="anchor-link" href="#Comma-Separated-Values-(CSV)-Theory">&#182;</a></h3>
 </div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Defined in 2005 by <a href="https://tools.ietf.org/html/rfc4180">RFC 4180</a>, the Request for Comments (RFC) publication of the Internet Society (ISOC)</p>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Basics:</p>
+<ul>
+<li>One table</li>
+<li>Values separated by separator <code>,</code> (although <code>\t, ;, etc.</code> also possible)</li>
+<li>Entries separated by new lines <code>\n</code> (although others also possible)</li>
+</ul>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Benefits:</p>
+<ul>
+<li>Human readability</li>
+<li>Extremely efficient appending</li>
+<li>Easy sharing between people and programs</li>
+<li>Relatively fast reading and writing</li>
+</ul>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Drawbacks:</p>
+<ul>
+<li>Only one table</li>
+<li>Only tabular data</li>
+<li>Disk space</li>
+</ul>
+
+</div>
+</div>
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Basics">Basics<a class="anchor-link" href="#Basics">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Simplest CSV handling: Pandas</p>
+
+</div>
+</div>
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Reading-CSV-Files">Reading CSV Files<a class="anchor-link" href="#Reading-CSV-Files">&#182;</a></h4>
+</div>
+</div>
+</div><div class="fragment">
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">csv_test_file</span> <span class="o">=</span> <span class="s2">&quot;C:/Users/rgrei/OneDrive/Work/Cryptix/data/Marketdata/boerse-frankfurt/bid-ask/XETR/sap-se.csv&quot;</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="The-Read-function-has-A-LOT-of-kwargs">The Read function has <em>A LOT</em> of kwargs<a class="anchor-link" href="#The-Read-function-has-A-LOT-of-kwargs">&#182;</a></h5>
 </div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="n">pandas</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> 
+                <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;,&#39;</span><span class="p">,</span> 
+                <span class="n">delimiter</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                <span class="n">header</span><span class="o">=</span><span class="s1">&#39;infer&#39;</span><span class="p">,</span> 
+                <span class="n">names</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                <span class="n">index_col</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                <span class="n">usecols</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                <span class="n">squeeze</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> 
+                <span class="n">prefix</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                <span class="n">mangle_dupe_cols</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
+                <span class="n">dtype</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">engine</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                <span class="n">converters</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                <span class="n">true_values</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                <span class="n">false_values</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                <span class="n">skipinitialspace</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> 
+                <span class="n">skiprows</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                <span class="n">skipfooter</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+                <span class="n">nrows</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                <span class="n">na_values</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                <span class="n">keep_default_na</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
+                <span class="n">na_filter</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
+                <span class="n">verbose</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> 
+                <span class="n">skip_blank_lines</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
+                <span class="n">parse_dates</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> 
+                <span class="n">infer_datetime_format</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> 
+                <span class="n">keep_date_col</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> 
+                <span class="n">date_parser</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                <span class="n">dayfirst</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> 
+                <span class="n">cache_dates</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
+                <span class="n">iterator</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> 
+                <span class="n">chunksize</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                <span class="n">compression</span><span class="o">=</span><span class="s1">&#39;infer&#39;</span><span class="p">,</span> 
+                <span class="n">thousands</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                <span class="n">decimal</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> 
+                <span class="n">lineterminator</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                <span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> 
+                <span class="n">quoting</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+                <span class="n">doublequote</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
+                <span class="n">escapechar</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                <span class="n">comment</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                <span class="n">encoding</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                <span class="n">dialect</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                <span class="n">error_bad_lines</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
+                <span class="n">warn_bad_lines</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
+                <span class="n">delim_whitespace</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> 
+                <span class="n">low_memory</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
+                <span class="n">memory_map</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> 
+                <span class="n">float_precision</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_test_file</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Wall time: 601 ms
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h6 id="Define-your-separator">Define your <code>sep</code>arator<a class="anchor-link" href="#Define-your-separator">&#182;</a></h6>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Allows to read all CSV-Type formats, e.g.:</p>
+<ul>
+<li>Tab separated "\t"</li>
+<li>Space separated " "</li>
+<li>Semicolon separated ";"</li>
+<li>etc.</li>
+</ul>
+
+</div>
+</div>
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h6 id="Ensuring-vaslidity-with-quotechar,-escapechar,-and-dialect">Ensuring vaslidity with <code>quotechar</code>, <code>escapechar</code>, and <code>dialect</code><a class="anchor-link" href="#Ensuring-vaslidity-with-quotechar,-escapechar,-and-dialect">&#182;</a></h6>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>quotechar</code> defines your quote character to ensure proper parsing</p>
+<div class="highlight"><pre><span></span><span class="n">quotechar</span><span class="o">=</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span>
+</pre></div>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>escapechar</code> defines a encoding escape character, e.g. <code>\</code> such that <code>\\n</code> renders <code>\n</code> instead of a new line</p>
+<div class="highlight"><pre><span></span><span class="n">escapechar</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+</pre></div>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>dialect</code> defines parameters will "override values (default or not) for the following parameters: delimiter, doublequote, escapechar, skipinitialspace, quotechar, and quoting."</p>
+<div class="highlight"><pre><span></span><span class="n">dialect</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+</pre></div>
+
+</div>
+</div>
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Thousands-and-Fractions">Thousands and Fractions<a class="anchor-link" href="#Thousands-and-Fractions">&#182;</a></h5>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="n">thousands</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+    <span class="n">decimal</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span>
+</pre></div>
+
+</div>
+</div>
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Save-CSV-Files">Save CSV Files<a class="anchor-link" href="#Save-CSV-Files">&#182;</a></h5>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">test</span><span class="o">.</span><span class="n">csv</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Reading-large-CSV-files">Reading <strong><em>large</em></strong> CSV files<a class="anchor-link" href="#Reading-large-CSV-files">&#182;</a></h4>
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="File-is-compressed-because-it-is-too-large">File is compressed because it is too large<a class="anchor-link" href="#File-is-compressed-because-it-is-too-large">&#182;</a></h5>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="n">compression</span><span class="o">=</span><span class="s1">&#39;infer&#39;</span><span class="p">,</span>
+</pre></div>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>compression:</p>
+<ul>
+<li>"on-the-fly decompression of on-disk data"</li>
+<li>default: <code>infer</code> compression from file-ending</li>
+<li>other options: gzip, bz2, zip, xz, None</li>
+</ul>
+
+</div>
+</div>
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Simple-options">Simple options<a class="anchor-link" href="#Simple-options">&#182;</a></h5>
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h6 id="Skipping-rows">Skipping rows<a class="anchor-link" href="#Skipping-rows">&#182;</a></h6>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="n">skipinitialspace</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> 
+    <span class="n">skiprows</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+    <span class="n">skipfooter</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> 
+    <span class="n">nrows</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+</pre></div>
+
+</div>
+</div>
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h6 id="Reading-select-columns">Reading select columns<a class="anchor-link" href="#Reading-select-columns">&#182;</a></h6>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="n">index_col</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+    <span class="n">usecols</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+</pre></div>
+
+</div>
+</div>
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Memory-Maps">Memory Maps<a class="anchor-link" href="#Memory-Maps">&#182;</a></h5>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="n">low_memory</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> 
+    <span class="n">memory_map</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+</pre></div>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>memory_map</code></p>
+<ul>
+<li>boolean attribute</li>
+<li>"map the file object directly onto memory" for access</li>
+<li>"can improve performance because there is no longer any I/O overhead"<ul>
+<li>paging</li>
+<li>flushing</li>
+</ul>
+</li>
+<li>specifically:<ul>
+<li>OS optimized subroutines are used</li>
+<li>strided memory access through numpy</li>
+<li>lazy loading</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[331]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_test_file</span><span class="p">,</span> <span class="n">memory_map</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Wall time: 509 ms
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Implicit-mappings">Implicit mappings<a class="anchor-link" href="#Implicit-mappings">&#182;</a></h5>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>low_memory</code></p>
+<ul>
+<li>process the file in chunks internally</li>
+<li>returns one full DataFrame</li>
+<li>only chunk size used reducign memory bandwidth</li>
+<li>allows for possibly mixed type inference within a column (!)<ul>
+<li>manually set mixed types either to False</li>
+<li>or better specify the type with the dtype parameter</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[334]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_test_file</span><span class="p">,</span> <span class="n">low_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Wall time: 459 ms
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h5 id="Explicit-Mapping">Explicit Mapping<a class="anchor-link" href="#Explicit-Mapping">&#182;</a></h5>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="n">chunksize</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+    <span class="n">iteratorbool</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+</pre></div>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Iterating through files chunk by chunk by loading file lazily</li>
+</ul>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>chunksize</code>:</p>
+<ul>
+<li>number of lines ot be read as a chunk</li>
+<li>returns <code>TextFileReader</code> object for iteration</li>
+</ul>
+<p><code>iterator</code>:</p>
+<ul>
+<li>Return <code>TextFileReader</code> object for iteration</li>
+<li>etting chunks with <code>get_chunk()</code></li>
+</ul>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">csv_test_file</span><span class="p">,</span> <span class="n">chunksize</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">a</span><span class="o">.</span><span class="n">get_chunk</span><span class="p">()</span>
+<span class="n">a</span><span class="o">.</span><span class="n">get_chunk</span><span class="p">()</span>
+<span class="nb">type</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>pandas.io.parsers.TextFileReader</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For mor details see:</p>
+<ul>
+<li><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html">https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_csv.html</a></li>
+<li><a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html">https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html</a></li>
+</ul>
+
+</div>
+</div>
+</div></div></section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Efficiently-reading-last-lines">Efficiently reading last lines<a class="anchor-link" href="#Efficiently-reading-last-lines">&#182;</a></h3>
 </div>
 </div>
-</div></section></section><section><section>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Sample file of &gt; 20mb</p>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[191]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">test_file</span> <span class="o">=</span> <span class="s2">&quot;C:/Users/rgrei/OneDrive/Work/Cryptix/data/Marketdata/boerse-frankfurt/bid-ask/XETR/sap-se.csv&quot;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Simple-Read-Last-Line-Codes">Simple Read Last Line Codes<a class="anchor-link" href="#Simple-Read-Last-Line-Codes">&#182;</a></h4>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[233]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">test_file</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+    <span class="n">last_line</span> <span class="o">=</span> <span class="n">lines</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">last_line</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2020-08-24T11:58:31.11+02:00,138.82,138.78,419.0,510.0
+Wall time: 79.8 ms
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">test_file</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">SEEK_END</span><span class="p">)</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">f</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span> <span class="o">-</span> <span class="mi">8</span><span class="o">*</span><span class="mi">16</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">SEEK_SET</span><span class="p">)</span>
+    <span class="n">lines</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;timed exec&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>: name &#39;test_file&#39; is not defined</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[201]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="k">import</span> <span class="n">deque</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[235]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">test_file</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">last_line</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">last_line</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>deque([b&#39;2020-08-24T11:58:31.11+02:00,138.82,138.78,419.0,510.0\r\n&#39;], maxlen=1)
+Wall time: 49.9 ms
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[236]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">test_file</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>b&#39;2020-08-24T11:58:31.11+02:00,138.82,138.78,419.0,510.0\r\n&#39;
+Wall time: 58.8 ms
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Using-seek-offsets-and-buffer-bytes">Using seek offsets and buffer bytes<a class="anchor-link" href="#Using-seek-offsets-and-buffer-bytes">&#182;</a></h4>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[168]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">io</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[248]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">tail</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the last `window` lines of file `f` as a list.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">window</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="n">BUFSIZ</span> <span class="o">=</span> <span class="mi">8192</span>
+    <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">remaining_bytes</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="n">window</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">block</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">while</span> <span class="n">size</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">remaining_bytes</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">remaining_bytes</span> <span class="o">-</span> <span class="n">BUFSIZ</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="c1"># Seek back one whole BUFSIZ</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">block</span> <span class="o">*</span> <span class="n">BUFSIZ</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="c1"># read BUFFER</span>
+            <span class="n">bunch</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">BUFSIZ</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># file too small, start from beginning</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="c1"># only read what was not read</span>
+            <span class="n">bunch</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">remaining_bytes</span><span class="p">)</span>
+
+        <span class="n">bunch</span> <span class="o">=</span> <span class="n">bunch</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="n">data</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">bunch</span><span class="p">)</span>
+        <span class="n">size</span> <span class="o">-=</span> <span class="n">bunch</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">remaining_bytes</span> <span class="o">-=</span> <span class="n">BUFSIZ</span>
+        <span class="n">block</span> <span class="o">-=</span> <span class="mi">1</span>
+
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()[</span><span class="o">-</span><span class="n">window</span><span class="p">:]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[249]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">test_file</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">last_line</span> <span class="o">=</span> <span class="n">tail</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">last_line</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;2020-08-24T11:58:31.11+02:00,138.82,138.78,419.0,510.0&#39;]
+Wall time: 997 µs
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Appending-CSV-Files">Appending CSV Files<a class="anchor-link" href="#Appending-CSV-Files">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[226]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&quot;a&quot;</span><span class="p">):</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-226-0b2e2bbb4f67&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 1</span><span class="ansi-yellow-intense-fg ansi-bold"> </span><span class="ansi-green-intense-fg ansi-bold">with</span> open<span class="ansi-yellow-intense-fg ansi-bold">(</span>filename<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-blue-intense-fg ansi-bold">&#34;a&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">      2</span>     df<span class="ansi-yellow-intense-fg ansi-bold">.</span>to_csv<span class="ansi-yellow-intense-fg ansi-bold">(</span>filename<span class="ansi-yellow-intense-fg ansi-bold">,</span> header<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-green-intense-fg ansi-bold">False</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>: name &#39;filename&#39; is not defined</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Working-with-multiple-CSV-Files">Working with multiple CSV Files<a class="anchor-link" href="#Working-with-multiple-CSV-Files">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since dictionaries are hashmaps, you can use them to map to files.</p>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Further, you can use them to map to memory mapped files.</p>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Using the <code>os</code> module, you can create nested dictionaries that memory map a folder</p>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The result:</p>
+<blockquote><p>Simple access to various large data files</p>
+</blockquote>
+
+</div>
+</div>
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Implementation-Example">Implementation Example<a class="anchor-link" href="#Implementation-Example">&#182;</a></h4>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[250]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">folderpath</span> <span class="o">=</span> <span class="s2">&quot;C:/Users/rgrei/OneDrive/Work/Cryptix/data/Marketdata/boerse-frankfurt&quot;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[327]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">map_folder_csv</span><span class="p">(</span><span class="n">folderpath</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;creates a tree hashmap to the memory mapped csv files (identical structure)&quot;&quot;&quot;</span>
+    <span class="n">files</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">folderpath</span><span class="p">)</span>
+    <span class="n">new_dic</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">files</span><span class="p">:</span>
+        <span class="n">filepath</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;</span><span class="si">{folderpath}</span><span class="s2">/</span><span class="si">{file}</span><span class="s2">&quot;</span>
+        <span class="k">if</span> <span class="s1">&#39;.csv&#39;</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">new_dic</span><span class="p">[</span><span class="n">file</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">memory_map</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+            <span class="n">new_dic</span><span class="p">[</span><span class="n">file</span><span class="p">]</span> <span class="o">=</span> <span class="n">map_folder_csv</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">pass</span>
+    <span class="k">return</span> <span class="n">new_dic</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">map_folder_csv</span><span class="p">(</span><span class="n">folderpath</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">KeyboardInterrupt</span>                         Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-327-7f873dd1b5d4&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">     12</span>             <span class="ansi-green-intense-fg ansi-bold">pass</span>
+<span class="ansi-green-fg">     13</span>     <span class="ansi-green-intense-fg ansi-bold">return</span> new_dic
+<span class="ansi-green-intense-fg ansi-bold">---&gt; 14</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>a <span class="ansi-yellow-intense-fg ansi-bold">=</span> map_folder_csv<span class="ansi-yellow-intense-fg ansi-bold">(</span>folderpath<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-327-7f873dd1b5d4&gt;</span> in <span class="ansi-cyan-fg">map_folder_csv</span><span class="ansi-blue-intense-fg ansi-bold">(folderpath)</span>
+<span class="ansi-green-fg">      8</span>             new_dic<span class="ansi-yellow-intense-fg ansi-bold">[</span>file<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-yellow-intense-fg ansi-bold">:</span><span class="ansi-yellow-intense-fg ansi-bold">-</span><span class="ansi-cyan-intense-fg ansi-bold">4</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">]</span> <span class="ansi-yellow-intense-fg ansi-bold">=</span> pd<span class="ansi-yellow-intense-fg ansi-bold">.</span>read_csv<span class="ansi-yellow-intense-fg ansi-bold">(</span>filepath<span class="ansi-yellow-intense-fg ansi-bold">,</span> memory_map<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-green-intense-fg ansi-bold">True</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">      9</span>         <span class="ansi-green-intense-fg ansi-bold">elif</span> os<span class="ansi-yellow-intense-fg ansi-bold">.</span>path<span class="ansi-yellow-intense-fg ansi-bold">.</span>isdir<span class="ansi-yellow-intense-fg ansi-bold">(</span>filepath<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-intense-fg ansi-bold">---&gt; 10</span><span class="ansi-yellow-intense-fg ansi-bold">             </span>new_dic<span class="ansi-yellow-intense-fg ansi-bold">[</span>file<span class="ansi-yellow-intense-fg ansi-bold">]</span> <span class="ansi-yellow-intense-fg ansi-bold">=</span> map_folder_csv<span class="ansi-yellow-intense-fg ansi-bold">(</span>filepath<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">     11</span>         <span class="ansi-green-intense-fg ansi-bold">else</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">     12</span>             <span class="ansi-green-intense-fg ansi-bold">pass</span>
+
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-327-7f873dd1b5d4&gt;</span> in <span class="ansi-cyan-fg">map_folder_csv</span><span class="ansi-blue-intense-fg ansi-bold">(folderpath)</span>
+<span class="ansi-green-fg">      8</span>             new_dic<span class="ansi-yellow-intense-fg ansi-bold">[</span>file<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-yellow-intense-fg ansi-bold">:</span><span class="ansi-yellow-intense-fg ansi-bold">-</span><span class="ansi-cyan-intense-fg ansi-bold">4</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">]</span> <span class="ansi-yellow-intense-fg ansi-bold">=</span> pd<span class="ansi-yellow-intense-fg ansi-bold">.</span>read_csv<span class="ansi-yellow-intense-fg ansi-bold">(</span>filepath<span class="ansi-yellow-intense-fg ansi-bold">,</span> memory_map<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-green-intense-fg ansi-bold">True</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">      9</span>         <span class="ansi-green-intense-fg ansi-bold">elif</span> os<span class="ansi-yellow-intense-fg ansi-bold">.</span>path<span class="ansi-yellow-intense-fg ansi-bold">.</span>isdir<span class="ansi-yellow-intense-fg ansi-bold">(</span>filepath<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-intense-fg ansi-bold">---&gt; 10</span><span class="ansi-yellow-intense-fg ansi-bold">             </span>new_dic<span class="ansi-yellow-intense-fg ansi-bold">[</span>file<span class="ansi-yellow-intense-fg ansi-bold">]</span> <span class="ansi-yellow-intense-fg ansi-bold">=</span> map_folder_csv<span class="ansi-yellow-intense-fg ansi-bold">(</span>filepath<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">     11</span>         <span class="ansi-green-intense-fg ansi-bold">else</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">     12</span>             <span class="ansi-green-intense-fg ansi-bold">pass</span>
+
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-327-7f873dd1b5d4&gt;</span> in <span class="ansi-cyan-fg">map_folder_csv</span><span class="ansi-blue-intense-fg ansi-bold">(folderpath)</span>
+<span class="ansi-green-fg">      6</span>         filepath <span class="ansi-yellow-intense-fg ansi-bold">=</span> <span class="ansi-blue-intense-fg ansi-bold">f&#34;{folderpath}/{file}&#34;</span>
+<span class="ansi-green-fg">      7</span>         <span class="ansi-green-intense-fg ansi-bold">if</span> <span class="ansi-blue-intense-fg ansi-bold">&#39;.csv&#39;</span> <span class="ansi-green-intense-fg ansi-bold">in</span> file<span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 8</span><span class="ansi-yellow-intense-fg ansi-bold">             </span>new_dic<span class="ansi-yellow-intense-fg ansi-bold">[</span>file<span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-yellow-intense-fg ansi-bold">:</span><span class="ansi-yellow-intense-fg ansi-bold">-</span><span class="ansi-cyan-intense-fg ansi-bold">4</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">]</span> <span class="ansi-yellow-intense-fg ansi-bold">=</span> pd<span class="ansi-yellow-intense-fg ansi-bold">.</span>read_csv<span class="ansi-yellow-intense-fg ansi-bold">(</span>filepath<span class="ansi-yellow-intense-fg ansi-bold">,</span> memory_map<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-green-intense-fg ansi-bold">True</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">      9</span>         <span class="ansi-green-intense-fg ansi-bold">elif</span> os<span class="ansi-yellow-intense-fg ansi-bold">.</span>path<span class="ansi-yellow-intense-fg ansi-bold">.</span>isdir<span class="ansi-yellow-intense-fg ansi-bold">(</span>filepath<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">     10</span>             new_dic<span class="ansi-yellow-intense-fg ansi-bold">[</span>file<span class="ansi-yellow-intense-fg ansi-bold">]</span> <span class="ansi-yellow-intense-fg ansi-bold">=</span> map_folder_csv<span class="ansi-yellow-intense-fg ansi-bold">(</span>filepath<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-green-intense-fg ansi-bold">~\Anaconda3\lib\site-packages\pandas\io\parsers.py</span> in <span class="ansi-cyan-fg">read_csv</span><span class="ansi-blue-intense-fg ansi-bold">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, squeeze, prefix, mangle_dupe_cols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, dialect, error_bad_lines, warn_bad_lines, delim_whitespace, low_memory, memory_map, float_precision)</span>
+<span class="ansi-green-fg">    684</span>     )
+<span class="ansi-green-fg">    685</span> 
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 686</span><span class="ansi-yellow-intense-fg ansi-bold">     </span><span class="ansi-green-intense-fg ansi-bold">return</span> _read<span class="ansi-yellow-intense-fg ansi-bold">(</span>filepath_or_buffer<span class="ansi-yellow-intense-fg ansi-bold">,</span> kwds<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">    687</span> 
+<span class="ansi-green-fg">    688</span> 
+
+<span class="ansi-green-intense-fg ansi-bold">~\Anaconda3\lib\site-packages\pandas\io\parsers.py</span> in <span class="ansi-cyan-fg">_read</span><span class="ansi-blue-intense-fg ansi-bold">(filepath_or_buffer, kwds)</span>
+<span class="ansi-green-fg">    456</span> 
+<span class="ansi-green-fg">    457</span>     <span class="ansi-green-intense-fg ansi-bold">try</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 458</span><span class="ansi-yellow-intense-fg ansi-bold">         </span>data <span class="ansi-yellow-intense-fg ansi-bold">=</span> parser<span class="ansi-yellow-intense-fg ansi-bold">.</span>read<span class="ansi-yellow-intense-fg ansi-bold">(</span>nrows<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">    459</span>     <span class="ansi-green-intense-fg ansi-bold">finally</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">    460</span>         parser<span class="ansi-yellow-intense-fg ansi-bold">.</span>close<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-green-intense-fg ansi-bold">~\Anaconda3\lib\site-packages\pandas\io\parsers.py</span> in <span class="ansi-cyan-fg">read</span><span class="ansi-blue-intense-fg ansi-bold">(self, nrows)</span>
+<span class="ansi-green-fg">   1184</span>     <span class="ansi-green-intense-fg ansi-bold">def</span> read<span class="ansi-yellow-intense-fg ansi-bold">(</span>self<span class="ansi-yellow-intense-fg ansi-bold">,</span> nrows<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-green-intense-fg ansi-bold">None</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">   1185</span>         nrows <span class="ansi-yellow-intense-fg ansi-bold">=</span> _validate_integer<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-blue-intense-fg ansi-bold">&#34;nrows&#34;</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> nrows<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 1186</span><span class="ansi-yellow-intense-fg ansi-bold">         </span>ret <span class="ansi-yellow-intense-fg ansi-bold">=</span> self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_engine<span class="ansi-yellow-intense-fg ansi-bold">.</span>read<span class="ansi-yellow-intense-fg ansi-bold">(</span>nrows<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">   1187</span> 
+<span class="ansi-green-fg">   1188</span>         <span class="ansi-red-intense-fg ansi-bold"># May alter columns / col_dict</span>
+
+<span class="ansi-green-intense-fg ansi-bold">~\Anaconda3\lib\site-packages\pandas\io\parsers.py</span> in <span class="ansi-cyan-fg">read</span><span class="ansi-blue-intense-fg ansi-bold">(self, nrows)</span>
+<span class="ansi-green-fg">   2143</span>     <span class="ansi-green-intense-fg ansi-bold">def</span> read<span class="ansi-yellow-intense-fg ansi-bold">(</span>self<span class="ansi-yellow-intense-fg ansi-bold">,</span> nrows<span class="ansi-yellow-intense-fg ansi-bold">=</span><span class="ansi-green-intense-fg ansi-bold">None</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">   2144</span>         <span class="ansi-green-intense-fg ansi-bold">try</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-intense-fg ansi-bold">-&gt; 2145</span><span class="ansi-yellow-intense-fg ansi-bold">             </span>data <span class="ansi-yellow-intense-fg ansi-bold">=</span> self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_reader<span class="ansi-yellow-intense-fg ansi-bold">.</span>read<span class="ansi-yellow-intense-fg ansi-bold">(</span>nrows<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">   2146</span>         <span class="ansi-green-intense-fg ansi-bold">except</span> StopIteration<span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">   2147</span>             <span class="ansi-green-intense-fg ansi-bold">if</span> self<span class="ansi-yellow-intense-fg ansi-bold">.</span>_first_chunk<span class="ansi-yellow-intense-fg ansi-bold">:</span>
+
+<span class="ansi-green-intense-fg ansi-bold">pandas\_libs\parsers.pyx</span> in <span class="ansi-cyan-fg">pandas._libs.parsers.TextReader.read</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
+
+<span class="ansi-green-intense-fg ansi-bold">pandas\_libs\parsers.pyx</span> in <span class="ansi-cyan-fg">pandas._libs.parsers.TextReader._read_low_memory</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
+
+<span class="ansi-green-intense-fg ansi-bold">pandas\_libs\parsers.pyx</span> in <span class="ansi-cyan-fg">pandas._libs.parsers.TextReader._read_rows</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
+
+<span class="ansi-green-intense-fg ansi-bold">pandas\_libs\parsers.pyx</span> in <span class="ansi-cyan-fg">pandas._libs.parsers.TextReader._convert_column_data</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
+
+<span class="ansi-green-intense-fg ansi-bold">pandas\_libs\parsers.pyx</span> in <span class="ansi-cyan-fg">pandas._libs.parsers.TextReader._convert_tokens</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
+
+<span class="ansi-green-intense-fg ansi-bold">pandas\_libs\parsers.pyx</span> in <span class="ansi-cyan-fg">pandas._libs.parsers.TextReader._convert_with_dtype</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
+
+<span class="ansi-green-intense-fg ansi-bold">~\Anaconda3\lib\site-packages\pandas\core\dtypes\common.py</span> in <span class="ansi-cyan-fg">is_categorical_dtype</span><span class="ansi-blue-intense-fg ansi-bold">(arr_or_dtype)</span>
+<span class="ansi-green-fg">    528</span> 
+<span class="ansi-green-fg">    529</span> 
+<span class="ansi-green-intense-fg ansi-bold">--&gt; 530</span><span class="ansi-yellow-intense-fg ansi-bold"> </span><span class="ansi-green-intense-fg ansi-bold">def</span> is_categorical_dtype<span class="ansi-yellow-intense-fg ansi-bold">(</span>arr_or_dtype<span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-yellow-intense-fg ansi-bold">-&gt;</span> bool<span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">    531</span>     &#34;&#34;&#34;
+<span class="ansi-green-fg">    532</span>     Check whether an array<span class="ansi-yellow-intense-fg ansi-bold">-</span>like <span class="ansi-green-intense-fg ansi-bold">or</span> dtype <span class="ansi-green-intense-fg ansi-bold">is</span> of the Categorical dtype<span class="ansi-yellow-intense-fg ansi-bold">.</span>
+
+<span class="ansi-red-intense-fg ansi-bold">KeyboardInterrupt</span>: </pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">process_filepath</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">fileending</span><span class="p">,</span> <span class="n">reader</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;memory map the files&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">fileending</span> <span class="ow">in</span> <span class="n">filepath</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">reader</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">map_folder</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> 
+
+
+<span class="k">def</span> <span class="nf">map_folder</span><span class="p">(</span><span class="n">folderpath</span><span class="p">,</span> <span class="n">fileending</span><span class="o">=</span><span class="s1">&#39;.csv&#39;</span><span class="p">,</span> <span class="n">reader</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">memory_map</span><span class="o">=</span><span class="kc">True</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;creates a tree hashmap to the memory mapped csv files (identical structure)&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span><span class="n">file</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">fileending</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">):</span> <span class="n">process_filepath</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{folderpath}</span><span class="s2">/</span><span class="si">{file}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fileending</span><span class="p">,</span> <span class="n">reader</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">folderpath</span><span class="p">)}</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="n">map_folder</span><span class="p">(</span><span class="n">folderpath</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="JSON">JSON<a class="anchor-link" href="#JSON">&#182;</a></h2>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[335]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">json_test_file</span> <span class="o">=</span> <span class="s2">&quot;C:/Users/rgrei/OneDrive/Work/Cryptix/data/Marketdata/boerse-frankfurt/bond_definitions.json&quot;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="JavaScript-Object-Notation">JavaScript Object Notation<a class="anchor-link" href="#JavaScript-Object-Notation">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Defined by <a href="https://tools.ietf.org/html/rfc7159.html">RFC 7159</a> (previously <a href="https://tools.ietf.org/html/rfc4627.html">RFC 4627</a> and <a href="http://www.ecma-international.org/publications/standards/Ecma-404.htm">ECMA-404</a></p>
+<p>Standardized in 2013, current version in 2017 <a href="https://tools.ietf.org/html/rfc8259">RFC 8259</a></p>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Benefits:</p>
+<ul>
+<li>Human readbility</li>
+<li>Easy sharing between people and programs</li>
+<li>Relatively fast reading and writing</li>
+<li>Hierarchies native</li>
+</ul>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Drawbacks:</p>
+<ul>
+<li>Inefficient Storage and Access</li>
+</ul>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Ignores indent so can be both easily human readable and more compact</p>
+
+</div>
+</div>
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Basic-Usage">Basic Usage<a class="anchor-link" href="#Basic-Usage">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="JSON-to-Python">JSON to Python<a class="anchor-link" href="#JSON-to-Python">&#182;</a></h4>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead><tr>
+<th>JSON</th>
+<th>Python</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>object</td>
+<td>dict</td>
+</tr>
+<tr>
+<td>array</td>
+<td>list</td>
+</tr>
+<tr>
+<td>string</td>
+<td>str</td>
+</tr>
+<tr>
+<td>number (int)</td>
+<td>int</td>
+</tr>
+<tr>
+<td>number (real)</td>
+<td>float</td>
+</tr>
+<tr>
+<td>true</td>
+<td>True</td>
+</tr>
+<tr>
+<td>false</td>
+<td>False</td>
+</tr>
+<tr>
+<td>null</td>
+<td>None</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Python-to-JSON">Python to JSON<a class="anchor-link" href="#Python-to-JSON">&#182;</a></h4>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<table>
+<thead><tr>
+<th>Python</th>
+<th>JSON</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dict</td>
+<td>object</td>
+</tr>
+<tr>
+<td>list, tuple</td>
+<td>array</td>
+</tr>
+<tr>
+<td>str</td>
+<td>string</td>
+</tr>
+<tr>
+<td>int, float, int- &amp; float-derived Enums</td>
+<td>number</td>
+</tr>
+<tr>
+<td>True</td>
+<td>true</td>
+</tr>
+<tr>
+<td>False</td>
+<td>false</td>
+</tr>
+<tr>
+<td>None</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="From-file-to-Python-object">From file to Python object<a class="anchor-link" href="#From-file-to-Python-object">&#182;</a></h4>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>"Deserialize fp (a .read()-supporting text file or binary file containing a JSON document) to a Python object using this conversion table."</p>
+<div class="highlight"><pre><span></span><span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fp</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">object_hook</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">parse_float</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">parse_int</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">parse_constant</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">object_pairs_hook</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[338]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">jf</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="n">json_test_file</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="From-string-to-Python-native-dtypes">From string to Python native dtypes<a class="anchor-link" href="#From-string-to-Python-native-dtypes">&#182;</a></h4>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>"Deserialize s (a str, bytes or bytearray instance containing a JSON document) to a Python object using this conversion table."</p>
+<div class="highlight"><pre><span></span><span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">object_hook</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">parse_float</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">parse_int</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">parse_constant</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">object_pairs_hook</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[358]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">json_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">{</span>
+<span class="s2">    &quot;researcher&quot;: {</span>
+<span class="s2">        &quot;name&quot;: &quot;Ford Prefect&quot;,</span>
+<span class="s2">        &quot;species&quot;: &quot;Betelgeusian&quot;,</span>
+<span class="s2">        &quot;relatives&quot;: [</span>
+<span class="s2">            {</span>
+<span class="s2">                &quot;name&quot;: &quot;Zaphod Beeblebrox&quot;,</span>
+<span class="s2">                &quot;species&quot;: &quot;Betelgeusian&quot;</span>
+<span class="s2">            }</span>
+<span class="s2">        ]</span>
+<span class="s2">    }</span>
+<span class="s2">}</span>
+<span class="s2">&quot;&quot;&quot;</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_string</span><span class="p">)</span>
+<span class="n">data</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[358]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;researcher&#39;: {&#39;name&#39;: &#39;Ford Prefect&#39;, &#39;species&#39;: &#39;Betelgeusian&#39;, &#39;relatives&#39;: [{&#39;name&#39;: &#39;Zaphod Beeblebrox&#39;, &#39;species&#39;: &#39;Betelgeusian&#39;}]}}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Convert-dictionary-object-to-string-for-JSON-storage">Convert dictionary object to string for JSON storage<a class="anchor-link" href="#Convert-dictionary-object-to-string-for-JSON-storage">&#182;</a></h4>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>"Serialize obj to a JSON formatted str using this conversion table. The arguments have the same meaning as in dump()."</p>
+<div class="highlight"><pre><span></span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">skipkeys</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">check_circular</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">allow_nan</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[361]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>{&#34;researcher&#34;: {&#34;name&#34;: &#34;Ford Prefect&#34;, &#34;species&#34;: &#34;Betelgeusian&#34;, &#34;relatives&#34;: [{&#34;name&#34;: &#34;Zaphod Beeblebrox&#34;, &#34;species&#34;: &#34;Betelgeusian&#34;}]}}
+&lt;class &#39;str&#39;&gt;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Saving-object-as-JSON">Saving object as JSON<a class="anchor-link" href="#Saving-object-as-JSON">&#182;</a></h4>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>"Serialize obj as a JSON formatted stream to fp (a .write()-supporting file-like object) using this conversion table."</p>
+<div class="highlight"><pre><span></span><span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">fp</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">skipkeys</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">ensure_ascii</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">check_circular</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">allow_nan</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="bp">cls</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">separators</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[359]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;test_file.json&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="More-on-working-with-JSON-files">More on working with JSON files<a class="anchor-link" href="#More-on-working-with-JSON-files">&#182;</a></h4>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><a href="https://realpython.com/python-json/">https://realpython.com/python-json/</a></li>
+<li><a href="https://docs.python.org/3/library/json.html">https://docs.python.org/3/library/json.html</a></li>
+</ul>
+
+</div>
+</div>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="XML">XML<a class="anchor-link" href="#XML">&#182;</a></h2>
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Extensible-Markup-Language-(XML)-Basics">Extensible Markup Language (XML) Basics<a class="anchor-link" href="#Extensible-Markup-Language-(XML)-Basics">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>First Published 1998</p>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Python XML module in the core library: <a href="https://docs.python.org/3/library/xml.html">https://docs.python.org/3/library/xml.html</a></p>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There is a big warning:</p>
+
+<pre><code>Warning
+The XML modules are not secure against erroneous or maliciously constructed data. If you need to parse untrusted or unauthenticated data see the XML vulnerabilities and The defusedxml and defusedexpat Packages sections.</code></pre>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="nt">&lt;note&gt;</span>
+<span class="nt">&lt;to&gt;</span>Tove<span class="nt">&lt;/to&gt;</span>
+<span class="nt">&lt;from&gt;</span>Jani<span class="nt">&lt;/from&gt;</span>
+<span class="nt">&lt;heading&gt;</span>Reminder<span class="nt">&lt;/heading&gt;</span>
+<span class="nt">&lt;body&gt;</span>Don&#39;t forget me this weekend!<span class="nt">&lt;/body&gt;</span>
+<span class="nt">&lt;/note&gt;</span>
+</pre></div>
+
+</div>
+</div>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="YAML">YAML<a class="anchor-link" href="#YAML">&#182;</a></h2>
+</div>
+</div>
+</div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="YAML-Ain't-Markup-Language-Basics">YAML Ain't Markup Language Basics<a class="anchor-link" href="#YAML-Ain't-Markup-Language-Basics">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Introduced in 2001</li>
+<li>Supposed to be a human readable format</li>
+<li>Used for configuration files often</li>
+</ul>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="nn">---</span>
+<span class="nt">receipt</span><span class="p">:</span>     <span class="l l-Scalar l-Scalar-Plain">Oz-Ware Purchase Invoice</span>
+<span class="nt">date</span><span class="p">:</span>        <span class="l l-Scalar l-Scalar-Plain">2012-08-06</span>
+<span class="nt">customer</span><span class="p">:</span>
+    <span class="nt">first_name</span><span class="p">:</span>   <span class="l l-Scalar l-Scalar-Plain">Dorothy</span>
+    <span class="nt">family_name</span><span class="p">:</span>  <span class="l l-Scalar l-Scalar-Plain">Gale</span>
+
+<span class="nt">items</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">part_no</span><span class="p">:</span>   <span class="l l-Scalar l-Scalar-Plain">A4786</span>
+      <span class="nt">descrip</span><span class="p">:</span>   <span class="l l-Scalar l-Scalar-Plain">Water Bucket (Filled)</span>
+      <span class="nt">price</span><span class="p">:</span>     <span class="l l-Scalar l-Scalar-Plain">1.47</span>
+      <span class="nt">quantity</span><span class="p">:</span>  <span class="l l-Scalar l-Scalar-Plain">4</span>
+
+    <span class="p p-Indicator">-</span> <span class="nt">part_no</span><span class="p">:</span>   <span class="l l-Scalar l-Scalar-Plain">E1628</span>
+      <span class="nt">descrip</span><span class="p">:</span>   <span class="l l-Scalar l-Scalar-Plain">High Heeled &quot;Ruby&quot; Slippers</span>
+      <span class="nt">size</span><span class="p">:</span>      <span class="l l-Scalar l-Scalar-Plain">8</span>
+      <span class="nt">price</span><span class="p">:</span>     <span class="l l-Scalar l-Scalar-Plain">133.7</span>
+      <span class="nt">quantity</span><span class="p">:</span>  <span class="l l-Scalar l-Scalar-Plain">1</span>
+
+<span class="nt">bill-to</span><span class="p">:</span>  <span class="nl">&amp;id001</span>
+    <span class="nt">street</span><span class="p">:</span> <span class="p p-Indicator">|</span>
+            <span class="no">123 Tornado Alley</span>
+            <span class="no">Suite 16</span>
+    <span class="nt">city</span><span class="p">:</span>   <span class="l l-Scalar l-Scalar-Plain">East Centerville</span>
+    <span class="nt">state</span><span class="p">:</span>  <span class="l l-Scalar l-Scalar-Plain">KS</span>
+
+<span class="nt">ship-to</span><span class="p">:</span>  <span class="nv">*id001</span>
+
+<span class="nt">specialDelivery</span><span class="p">:</span>  <span class="p p-Indicator">&gt;</span>
+    <span class="no">Follow the Yellow Brick</span>
+    <span class="no">Road to the Emerald City.</span>
+    <span class="no">Pay no attention to the</span>
+    <span class="no">man behind the curtain.</span>
+</pre></div>
+
+</div>
+</div>
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Parquet">Parquet<a class="anchor-link" href="#Parquet">&#182;</a></h2>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Introduced in 2013</p>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>"<a href="http://parquet.apache.org/">Apache Parquet</a> is a <a href="http://en.wikipedia.org/wiki/Column-oriented_DBMS">columnar storage format</a> available to any project in the Hadoop ecosystem, regardless of the choice of data processing framework, data model or programming language."</p>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Python uses pyarrow to acces parquet files</p>
+<div class="highlight"><pre><span></span>pip install pyarrow
+</pre></div>
+
+</div>
+</div>
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Converting-to-parquet-compatible-formats">Converting to parquet compatible formats<a class="anchor-link" href="#Converting-to-parquet-compatible-formats">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[363]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pyarrow</span> <span class="k">as</span> <span class="nn">pa</span>
+<span class="kn">import</span> <span class="nn">pyarrow.parquet</span> <span class="k">as</span> <span class="nn">pq</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[368]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="n">pa</span><span class="o">.</span><span class="n">Table</span><span class="o">.</span><span class="n">from_pandas</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="n">table</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[368]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>pyarrow.Table
+time: string
+bestAskPrice: double
+bestBidPrice: double
+bestAskUnits: double
+bestBidUnits: double</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Writing-Parquet-files">Writing Parquet files<a class="anchor-link" href="#Writing-Parquet-files">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[369]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pq</span><span class="o">.</span><span class="n">write_table</span><span class="p">(</span><span class="n">table</span><span class="p">,</span> <span class="s1">&#39;example.parquet&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[383]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">humanize</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;csv:     {humanize.naturalsize(os.path.getsize(csv_test_file))}, </span><span class="se">\n</span><span class="s2">parquet:  {humanize.naturalsize(os.path.getsize(&#39;example.parquet&#39;))}&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>csv:     18.8 MB, 
+parquet:  3.6 MB
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Reading-Parquet-files">Reading Parquet files<a class="anchor-link" href="#Reading-Parquet-files">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[384]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">table2</span> <span class="o">=</span> <span class="n">pq</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="s1">&#39;example.parquet&#39;</span><span class="p">)</span>
+<span class="n">table2</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[384]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>pyarrow.Table
+time: string
+bestAskPrice: double
+bestBidPrice: double
+bestAskUnits: double
+bestBidUnits: double</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Convert-back-to-Pandas">Convert back to Pandas<a class="anchor-link" href="#Convert-back-to-Pandas">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[387]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">table2</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[387]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>time</th>
+      <th>bestAskPrice</th>
+      <th>bestBidPrice</th>
+      <th>bestAskUnits</th>
+      <th>bestBidUnits</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>2020-08-10T13:58:30.42+02:00</td>
+      <td>135.600006</td>
+      <td>135.56</td>
+      <td>570.0</td>
+      <td>694.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2020-08-10T13:58:30.88+02:00</td>
+      <td>135.600006</td>
+      <td>135.56</td>
+      <td>570.0</td>
+      <td>622.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2020-08-10T13:58:34.81+02:00</td>
+      <td>135.600006</td>
+      <td>135.56</td>
+      <td>570.0</td>
+      <td>694.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>2020-08-10T13:58:36.06+02:00</td>
+      <td>135.600000</td>
+      <td>135.56</td>
+      <td>488.0</td>
+      <td>816.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>2020-08-10T13:58:36.06+02:00</td>
+      <td>135.600000</td>
+      <td>135.56</td>
+      <td>488.0</td>
+      <td>816.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div></div></section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="More-Information">More Information<a class="anchor-link" href="#More-Information">&#182;</a></h3>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For more information on pyarrow: <a href="https://arrow.apache.org/docs/python/parquet.html">https://arrow.apache.org/docs/python/parquet.html</a></p>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There is also the popular: <a href="https://fastparquet.readthedocs.io/en/latest/">FastParquet</a></p>
+
+</div>
+</div>
+</div></div><div class="fragment">
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can also read and write straight from pandas if you prefer.</p>
+
+</div>
+</div>
+</div></div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13282,24 +15245,17 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Introduction">Introduction<a class="anchor-link" href="#Introduction">&#182;</a></h2><ul>
-<li>SQL is a declarative programming language to manipulate tables<ul>
-<li>no functions or loops, just <em>declare</em> what you need and the runtime will figure out how to compute it</li>
+<h2 id="intro">intro<a class="anchor-link" href="#intro">&#182;</a></h2><ul>
+<li>sql is a declarative programming language to manipulate tables</li>
+<li>declarative: no functions or loops, just <em>declare</em> what you need and the runtime will figure out how to compute it</li>
+<li>sql queries can be used to<ul>
+<li>insert new rows into a table</li>
+<li>delete rows from a table</li>
+<li>update one or more attributes of one or more rows in a table</li>
+<li>retrieve and possibly transform rows combing from one or more tables</li>
 </ul>
 </li>
-<li>SQL queries can be used to<ul>
-<li>Insert new rows into a table</li>
-<li>Delete rows from a table</li>
-<li>Ipdate one or more attributes of one or more rows in a table</li>
-<li>Retrieve and possibly transform rows combing from one or more tables</li>
-</ul>
-</li>
-<li>Relational Database Management System (RDBMS)<ul>
-<li>Manages data in the tables</li>
-<li>Executes queries, returns results</li>
-</ul>
-</li>
-<li>This section will mostly focus on reading data (last point)</li>
+<li>this section will mostly focus on reading data (last point)</li>
 </ul>
 
 </div>
@@ -13308,41 +15264,26 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Main-abstraction:-Tables">Main abstraction: Tables<a class="anchor-link" href="#Main-abstraction:-Tables">&#182;</a></h2><ul>
-<li>A table is a <em>set</em> of tuples (rows)<ul>
-<li>No two rows are the same</li>
+<h2 id="main-abstraction:-tables">main abstraction: tables<a class="anchor-link" href="#main-abstraction:-tables">&#182;</a></h2><ul>
+<li>a table is a <em>set</em> of tuples (rows)<ul>
+<li>no two rows are the same</li>
 </ul>
 </li>
-<li>Rows are distinguished by <em>primary keys</em><ul>
-<li>Primary key: smallest set of attributes that uniquely identifies a row</li>
-<li>Cannot have two rows with the same primary key</li>
-<li>Examples:<ul>
-<li>Student ID (one attribute)</li>
-<li>First name, last name, birth date, place of birth (four attributes)</li>
+<li>rows are distinguished by <em>primary keys</em><ul>
+<li>primary key: smallest set of attributes that uniquely identifies a row, examples:<ul>
+<li>student ID (one attribute)</li>
+<li>first name, last name, birth date, place of birth (four attributes)</li>
 </ul>
 </li>
-<li>The primary key is a property of each table<ul>
-<li>All rows in a table use the same attributes as primary key</li>
-<li>But different tables can have different primary keys</li>
+<li>the primary key is a property of each table<ul>
+<li>all rows in a table use the same attributes as primary key</li>
+<li>but different tables can have different primary keys</li>
 </ul>
 </li>
+<li>cannot have two rows with the same primary key</li>
 </ul>
 </li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Domain">Domain<a class="anchor-link" href="#Domain">&#182;</a></h2><ul>
-<li>Good database design has<ul>
-<li>One table for each entity in the domain</li>
-<li>Relationships between two or more entities</li>
-</ul>
-</li>
-<li><em>Foreign keys</em> are used to refer to rows of other tables<ul>
+<li><em>foreign keys</em> are used to refer to rows of other tables<ul>
 <li>e.g. a table with grades will have foreign keys that point to the student and the course</li>
 </ul>
 </li>
@@ -13354,75 +15295,50 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Example:-University">Example: University<a class="anchor-link" href="#Example:-University">&#182;</a></h3><ul>
-<li>Entities<ul>
-<li>Students (ID, Name, Degree)</li>
-<li>Courses (ID, Title, Faculty, Semester)</li>
-<li>Professors (ID, Name, Chair)</li>
+<h2 id="domain">domain<a class="anchor-link" href="#domain">&#182;</a></h2><ul>
+<li>good database design has<ul>
+<li>one table for each "entity" in the domain</li>
+<li>relationships between entities</li>
 </ul>
 </li>
-<li>Relationships<ul>
-<li>One student can <em>Mentor</em> another student</li>
-<li>A student <em>Attends</em> several courses and obtains a grade for each of them</li>
-<li>Professors <em>Teach</em> courses</li>
+<li>types of binary relationships:<ul>
+<li>1 to 1 (can be stored in either entity, but NOT BOTH, or in a separate talbe)</li>
+<li>1 to n (must be stored in the entity with cardinality "1", or in a separate table)</li>
+<li>m to n (requires a separate table)  </li>
 </ul>
 </li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="ER-diagram">ER diagram<a class="anchor-link" href="#ER-diagram">&#182;</a></h3><ul>
-<li>Graphical form to represent entities and relationships<ul>
-<li>Box: entity</li>
-<li>Diamond: relationship</li>
-<li>Circle: attribute</li>
+<li>possible to have relationships between more than two entities</li>
+<li>example:<ul>
+<li>entities<ul>
+<li>students (id, name, degree)</li>
+<li>courses (id, faculty, semester)</li>
+<li>professors (id, name, chair)</li>
 </ul>
 </li>
-</ul>
-<p><img src="../img/sql_er_diagram.png" alt=""></p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Which-tables-to-create?">Which tables to create?<a class="anchor-link" href="#Which-tables-to-create?">&#182;</a></h3><ul>
-<li>Until now, we separated entities from relationships</li>
-<li>But in practice everything must be stored into tables</li>
-<li>How to do this?<ul>
-<li>One table per entity (students, courses, professors)</li>
-<li>What about the relationships?<ul>
-<li>Mentor: 1 to 1, three possibilities<ol>
-<li>Have a column "mentor"</li>
-<li>Have a column "mentee"<ul>
-<li>Having both is not ideal: more work to ensure consistency</li>
+<li>relationships<ul>
+<li>"mentor" between students (suppose 1 to 1), three possibilities<ul>
+<li>have a column "mentor"</li>
+<li>have a column "mentee"</li>
+<li>having both is not ideal: more work to ensure consistency</li>
+<li>have a new table (mentor, mentee)</li>
 </ul>
 </li>
-<li>Have a new table (mentor, mentee)</li>
-</ol>
-</li>
-<li>Attends: M to N<ul>
-<li>Requires a table (student, course)</li>
+<li>grades (entity student, entity course, attribute grade)<ul>
+<li>m to n -&gt; requires a table</li>
 </ul>
 </li>
-<li>Teaches: 1 to N<ul>
-<li>Store professor in course table or create separate table</li>
+<li>teaches (professors, courses)<ul>
+<li>m to n -&gt; requires a table</li>
+<li>only one professor per course -&gt; store professor in course table or create separate table</li>
 </ul>
 </li>
 </ul>
 </li>
-<li>General rule:<ul>
-<li>Using a separate table is always possible, or</li>
-<li>1 to 1: can store in either entity</li>
-<li>1 to N: store in entity with cardinality N</li>
-<li>M to N: must use separate table</li>
 </ul>
 </li>
+<li>sql shines when "navigating" across relationships, for example:<ul>
+<li>for each student, find the professor that gave them the highest grade</li>
+<li>for each professor, find courses taught last semester</li>
 </ul>
 </li>
 </ul>
@@ -13433,54 +15349,20 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Final-list-of-tables">Final list of tables<a class="anchor-link" href="#Final-list-of-tables">&#182;</a></h3><ul>
-<li>Students(ID, Name, Degree, Mentor)</li>
-<li>Professors(ID, Name, Chair)</li>
-<li>Courses(ID, Title, Faculty, Semester, Professor)</li>
-<li>Attends(Student, Course, Grade)</li>
-<li>Which attributes are primary and foreign keys?</li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Purpose-of-SQL">Purpose of SQL<a class="anchor-link" href="#Purpose-of-SQL">&#182;</a></h2><ul>
-<li>SQL shines when "navigating" across relationships, for example:<ul>
-<li>For each student, find the professor that gave them the highest grade</li>
-<li>For each professor, find courses taught last semester</li>
-</ul>
-</li>
-<li>Also used to modify data, tables, databases, etc.<ul>
-<li>Not discussed in this course</li>
-</ul>
-</li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Anatomy-of-a-SELECT-query">Anatomy of a SELECT query<a class="anchor-link" href="#Anatomy-of-a-SELECT-query">&#182;</a></h2><ul>
-<li>SELECT queries are used to retrieve data from the database</li>
-<li>The result is itself a table (not saved unless specified)</li>
-</ul>
+<h2 id="anatomy-of-a-select-query">anatomy of a select query<a class="anchor-link" href="#anatomy-of-a-select-query">&#182;</a></h2><ul>
+<li><p>"select" queries are used to retrieve data from the database</p>
 
 <pre><code>SELECT &lt;columns and transformation&gt;
 FROM &lt;source table(s)&gt;
-[WHERE &lt;filter rows coming from the source table(s)&gt;]
+[WHERE &lt;filter rows coming from source table(s)&gt;]
 [GROUP BY &lt;create groups of rows&gt;
-[HAVING &lt;filter groups&gt;]]
-[ORDER BY &lt;columns&gt; [ASC|DESC]];</code></pre>
-<ul>
-<li>Must have SELECT and FROM</li>
-<li>WHERE and GROUPBY are optional</li>
-<li>HAVING is optional, and must be used with GROUP BY</li>
-<li>GROUP BY: eventually you must have only one row per group</li>
+[HAVING &lt;filter groups&gt;]]</code></pre>
+</li>
+<li><p>must have SELECT+FROM</p>
+</li>
+<li>WHERE and GROUPBY optional</li>
+<li>HAVING optional, must be used with GROUP BY</li>
+<li>note on GROUP BY: eventually you must have only one row per group</li>
 </ul>
 
 </div>
@@ -13489,52 +15371,16 @@ FROM &lt;source table(s)&gt;
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example">Example<a class="anchor-link" href="#Example">&#182;</a></h2><p>Find all courses held in the Winter semester 2019/2020:</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span>
-<span class="k">FROM</span> <span class="n">Courses</span>
-<span class="k">WHERE</span> <span class="n">Semester</span> <span class="o">=</span> <span class="s1">&#39;WiSE 19/20&#39;</span><span class="p">;</span>
-</pre></div>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Select-query-untangled">Select query untangled<a class="anchor-link" href="#Select-query-untangled">&#182;</a></h2><ul>
-<li>Confusingly, the execution order is different than the writing order:<ol>
+<h2 id="select-query-untangled">select query untangled<a class="anchor-link" href="#select-query-untangled">&#182;</a></h2><ul>
+<li>confusingly, order of execution is different than order of writing:<ol>
 <li>FROM: first, gather all input rows from all tables</li>
 <li>WHERE: next, remove all rows not matching the predicate</li>
 <li>GROUP BY: now, if needed, create groups of rows</li>
 <li>HAVING: then, remove all groups that do not match the predicate</li>
-<li>ORDER BY: sort the tuples by a the value of a certain column</li>
-<li>SELECT: finally, produce output columns</li>
+<li>SELECT: finally, produce output rows</li>
 </ol>
 </li>
 </ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Interactive-SQL-console">Interactive SQL console<a class="anchor-link" href="#Interactive-SQL-console">&#182;</a></h2><p>An interactive SQL console with a few tables can be accessed at <a href="https://www.w3schools.com/sql/trysql.asp?filename=trysql_select_all">w3schools.com</a></p>
-<ul>
-<li>Go to w3schools.com</li>
-<li>Scroll until SQL, on the left side there will be a query and a button "Try it Yourself"</li>
-<li>I encourage you to fiddle around while I am explaining</li>
-<li>They also have a (superficial) command reference</li>
-</ul>
-<p><img src="../img/w3trysql.png" alt=""></p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Interactive-SQL-console">Interactive SQL console<a class="anchor-link" href="#Interactive-SQL-console">&#182;</a></h2><p><img src="../img/w3sqled.png" alt=""></p>
 
 </div>
 </div>
@@ -13543,14 +15389,14 @@ FROM &lt;source table(s)&gt;
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="FROM:-source-tables">FROM: source tables<a class="anchor-link" href="#FROM:-source-tables">&#182;</a></h2><ul>
-<li>You can specify one or more tables in the from clause</li>
+<li>you can specify one or more tables in the from clause</li>
 <li>FROM will do a cross-product of all tuples of all tables</li>
-<li>In almost all cases, you only want a small subset of the cross-product<ul>
-<li>Use WHERE to remove tuples that do not make sense</li>
+<li>in almost all cases, you only want a small subset of the cross-product<ul>
+<li>use WHERE to remove tuples that do not make sense - possible to give aliases to tables that can be used in the remainder of the query</li>
 </ul>
 </li>
-<li>Possible to give aliases to tables and use that alias in the rest of the query<ul>
-<li>Useful to keep query short and to disambiguate when the same table is used several times in the same query</li>
+<li>possible to give aliases to tables and use that alias in the rest of the query<ul>
+<li>useful to keep query short and when the same table is used several times in the same query</li>
 </ul>
 </li>
 </ul>
@@ -13562,38 +15408,9 @@ FROM &lt;source table(s)&gt;
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="WHERE:-tuple-filter">WHERE: tuple filter<a class="anchor-link" href="#WHERE:-tuple-filter">&#182;</a></h2><ul>
-<li>Specify a boolean condition that is evaluated for each row produced by the FROM</li>
-<li>All rows where this evaluates to false are discarded</li>
-<li>Example: Associate to each student all its grades (one per row)</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span>
-<span class="k">FROM</span>
-    <span class="n">Students</span> <span class="k">AS</span> <span class="n">s</span><span class="p">,</span>
-    <span class="n">Attend</span> <span class="k">AS</span> <span class="n">a</span><span class="p">,</span>
-    <span class="n">Course</span> <span class="k">AS</span> <span class="k">c</span>
-<span class="k">WHERE</span>
-    <span class="n">s</span><span class="p">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">Student</span>
-    <span class="k">AND</span> <span class="n">a</span><span class="p">.</span><span class="n">Course</span> <span class="o">=</span> <span class="k">c</span><span class="p">.</span><span class="n">ID</span><span class="p">;</span>
-</pre></div>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="WHERE:-handling-of-NULL-values">WHERE: handling of NULL values<a class="anchor-link" href="#WHERE:-handling-of-NULL-values">&#182;</a></h2><ul>
-<li>NULL is used for "undefined" values</li>
-<li>Nothing is equal to NULL (not even NULL)<ul>
-<li><code>x = NULL</code> always equals NULL (i.e. false)</li>
-</ul>
-</li>
-<li>Use instead <code>x IS NULL</code> or <code>x IS NOT NULL</code></li>
-<li>Nasty example: <code>SELECT * FROM table WHERE x = 10 OR NOT x = 10</code><ul>
-<li>When <code>x</code> contains NULLs this equals <code>WHERE x IS NOT NULL</code></li>
-<li>Dumb fix: <code>WHERE x = 10 OR NOT x = 10 OR x IS NULL</code></li>
-</ul>
-</li>
+<li>specify a boolean condition that is evaluated for each row produced by the FROM</li>
+<li>all rows where this evaluates to false are discarded</li>
+<li>handling of null values</li>
 </ul>
 
 </div>
@@ -13603,104 +15420,49 @@ FROM &lt;source table(s)&gt;
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="JOIN:-a-special-case-of-FROM+WHERE">JOIN: a special case of FROM+WHERE<a class="anchor-link" href="#JOIN:-a-special-case-of-FROM+WHERE">&#182;</a></h2><ul>
-<li>In most cases, we are not interested in the cross-product</li>
-<li>We actually want tuples that match primary/foreign keys</li>
-<li>This operation is so common that it has a special name to distinguish it from the general case</li>
-<li>Other than the name, the two are completely equivalent</li>
-<li>Join makes your intentions clearer</li>
-<li>The previous query becomes:</li>
-</ul>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span>
-<span class="k">FROM</span>
-    <span class="n">Students</span> <span class="k">AS</span> <span class="n">s</span>
-    <span class="k">JOIN</span> <span class="n">Attend</span> <span class="k">AS</span> <span class="n">a</span>
-        <span class="k">ON</span> <span class="n">s</span><span class="p">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">Student</span>
-    <span class="k">JOIN</span> <span class="n">Course</span> <span class="k">AS</span> <span class="k">c</span>
-        <span class="k">ON</span> <span class="k">c</span><span class="p">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">Course</span><span class="p">;</span>
-</pre></div>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Non-matching-rows-in-JOINs">Non-matching rows in JOINs<a class="anchor-link" href="#Non-matching-rows-in-JOINs">&#182;</a></h2><ul>
-<li>Options to handle non-matches:<ul>
-<li>Inner join: Only keep matches</li>
-<li>Left join: keep matches and un-matched records from <em>left</em> table</li>
-<li>Right join: keep matches and un-matched records from <em>right</em> table</li>
-<li>Outer join: keep matches, cross-product between un-matched records</li>
+<li>in most cases, we are not interested in the cross-product</li>
+<li>we actually want tuples that match primary/foreign keys</li>
+<li>example <code>SELECT * FROM students, grades WHERE students.id = grade.student</code><ul>
+<li>associates to each student all its grades (one per row)</li>
 </ul>
 </li>
-<li>Other possibilities:<ul>
-<li>Natural join (<code>ON</code> is missing): match all columns with the same name</li>
-<li>Self-join: A table with itself (e.g. to find a student's mentor)</li>
+<li>this operation is so common that it has a special name to distinguish it from the general case</li>
+<li><code>SELECT * FROM students JOIN grades ON student.id = grade.student</code></li>
+<li>options to handle non-matches:<ul>
+<li>inner join: <code>FROM students [INNER] JOIN grades ON student.id = grade.student</code><ul>
+<li><code>WHERE students.id = grade.student</code></li>
+<li>only keep matches</li>
+</ul>
+</li>
+<li>left join: <code>FROM students LEFT JOIN grades ON student.id = grade.student</code><ul>
+<li><code>WHERE students.id = grade.student OR grade.student IS NULL</code></li>
+<li>keep matches and un-matched records from <em>left</em> table</li>
+</ul>
+</li>
+<li>right join: <code>FROM students RIGHT JOIN grades ON student.id = grade.student</code><ul>
+<li><code>WHERE students.id = grade.student OR stude=nt.id IS NULL</code></li>
+<li>keep matches and un-matched records from <em>right</em> table</li>
+</ul>
+</li>
+<li>outer join: <code>FROM students OUTER JOIN grades ON student.id = grade.student</code><ul>
+<li><code>WHERE students.id = grade.student OR grade.student IS NULL OR student.id IS NULL</code></li>
+<li>keep matches, cross-product between un-matched records</li>
 </ul>
 </li>
 </ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="INNER-JOIN">INNER JOIN<a class="anchor-link" href="#INNER-JOIN">&#182;</a></h3><div class="highlight"><pre><span></span><span class="k">FROM</span> <span class="n">Students</span> <span class="p">[</span><span class="k">INNER</span><span class="p">]</span> <span class="k">JOIN</span> <span class="n">Attend</span>
-    <span class="k">ON</span> <span class="n">Student</span><span class="p">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">Attend</span><span class="p">.</span><span class="n">Student</span>
-</pre></div>
-<p><img src="../img/sql_join_inner.svg" alt=""></p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="LEFT-JOIN">LEFT JOIN<a class="anchor-link" href="#LEFT-JOIN">&#182;</a></h3><div class="highlight"><pre><span></span><span class="k">FROM</span> <span class="n">Students</span> <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">Attend</span>
-    <span class="k">ON</span> <span class="n">Student</span><span class="p">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">Attend</span><span class="p">.</span><span class="n">Student</span>
-</pre></div>
-<p><img src="../img/sql_join_left.svg" alt=""></p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="RIGHT-JOIN">RIGHT JOIN<a class="anchor-link" href="#RIGHT-JOIN">&#182;</a></h3><div class="highlight"><pre><span></span><span class="k">FROM</span> <span class="n">Students</span> <span class="k">RIGHT</span> <span class="k">JOIN</span> <span class="n">Attend</span>
-    <span class="k">ON</span> <span class="n">Student</span><span class="p">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">Attend</span><span class="p">.</span><span class="n">Student</span>
-</pre></div>
-<p><img src="../img/sql_join_right.svg" alt=""></p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="OUTER-JOIN">OUTER JOIN<a class="anchor-link" href="#OUTER-JOIN">&#182;</a></h3><div class="highlight"><pre><span></span><span class="k">FROM</span> <span class="n">Students</span> <span class="k">OUTER</span> <span class="k">JOIN</span> <span class="n">Attend</span>
-    <span class="k">ON</span> <span class="n">Student</span><span class="p">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">Attend</span><span class="p">.</span><span class="n">Student</span>
-</pre></div>
-<p><img src="../img/sql_join_outer.svg" alt=""></p>
-<p>Warning: cross-product between unmatched rows!</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Retrieving-un-matched-rows-only">Retrieving un-matched rows only<a class="anchor-link" href="#Retrieving-un-matched-rows-only">&#182;</a></h3><ul>
-<li>Example: find all students who have not attended any course</li>
+</li>
+<li>other possibilities:<ul>
+<li>natural join: <code>FROM students JOIN grades</code><ul>
+<li><code>ON</code> is missing -&gt; match all columns with the same name</li>
 </ul>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">Students</span><span class="p">.</span><span class="n">ID</span>
-<span class="k">FROM</span> <span class="n">Students</span> <span class="k">LEFT</span> <span class="k">JOIN</span> <span class="n">Attend</span>
-    <span class="k">ON</span> <span class="n">Students</span><span class="p">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">Attends</span><span class="p">.</span><span class="n">Student</span>
-<span class="k">WHERE</span>
-    <span class="n">Attends</span><span class="p">.</span><span class="n">Student</span> <span class="k">IS</span> <span class="k">NULL</span>
-</pre></div>
-<p><img src="../img/sql_join_unmatched_only.svg" alt=""></p>
+</li>
+<li>self join: <code>FROM stdudents s JOIN students t</code><ul>
+<li>better to use aliases</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 
 </div>
 </div>
@@ -13720,26 +15482,8 @@ FROM &lt;source table(s)&gt;
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="HAVING:-filter-groups">HAVING: filter groups<a class="anchor-link" href="#HAVING:-filter-groups">&#182;</a></h2><ul>
-<li>A boolean condition applied to each group</li>
-<li>Example: filter by group size, min/max/average of something..</li>
-<li>Common case: counting<ul>
-<li><code>COUNT(*)</code>: number of rows in the group</li>
-<li><code>COUNT(expr)</code>: number of rows where <code>expr</code> is not NULL</li>
-<li><code>COUNT(DISTINCT expr)</code>: number of unique values of <code>expr</code> (excluding NULLs)</li>
-</ul>
-</li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="ORDER-BY:-order-tuples">ORDER BY: order tuples<a class="anchor-link" href="#ORDER-BY:-order-tuples">&#182;</a></h2><ul>
-<li>Sort the tuples produced by the query</li>
-<li>Sort by the value of one or more columns, possibly transformed</li>
-<li>Possible to order by aggregations (count/min/max/sum/avg)</li>
+<li>another boolean condition applied to each group</li>
+<li>example: filter by group size, min/max/mean of something..</li>
 </ul>
 
 </div>
@@ -13749,9 +15493,9 @@ FROM &lt;source table(s)&gt;
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="SELECT:-produce-output-columns">SELECT: produce output columns<a class="anchor-link" href="#SELECT:-produce-output-columns">&#182;</a></h2><ul>
-<li>All the surviving groups/rows are transformed</li>
-<li>Select only a subset of attributes, or transform values</li>
-<li>Careful: each group must be collapsed into a row</li>
+<li>all the surviving groups/rows are transformed</li>
+<li>select only a subset of attributes, or transform values</li>
+<li>careful: each group must be collapsed into a row</li>
 </ul>
 
 </div>
@@ -13760,186 +15504,23 @@ FROM &lt;source table(s)&gt;
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Examples">Examples<a class="anchor-link" href="#Examples">&#182;</a></h1>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example-1">Example 1<a class="anchor-link" href="#Example-1">&#182;</a></h2><p>Find the ID of all students who failed at least one exam.</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="p">...</span>
+<h2 id="subqueries-and-CTE">subqueries and CTE<a class="anchor-link" href="#subqueries-and-CTE">&#182;</a></h2><ul>
+<li>to make things messy</li>
+<li>too many CTE's can make query slower, sometimes better to create temporary table</li>
+<li><p>jww's usecase:</p>
+<div class="highlight"><pre><span></span><span class="k">select</span> <span class="n">t</span><span class="p">.</span><span class="n">id</span><span class="p">,</span> <span class="p">(</span>
+<span class="k">select</span> <span class="n">u</span><span class="p">.</span><span class="n">status</span>
+<span class="k">from</span> <span class="n">tbl</span> <span class="n">u</span>
+<span class="k">where</span> <span class="n">t</span><span class="p">.</span><span class="n">id</span> <span class="o">==</span> <span class="n">u</span><span class="p">.</span><span class="n">id</span> <span class="k">and</span> <span class="n">t</span><span class="p">.</span><span class="k">timestamp</span> <span class="o">&gt;=</span> <span class="n">u</span><span class="p">.</span><span class="k">timestamp</span>
+<span class="k">order</span> <span class="k">by</span> <span class="k">desc</span> <span class="n">u</span><span class="p">.</span><span class="k">timestamp</span>
+<span class="k">limit</span> <span class="mi">1</span>
+<span class="p">)</span> <span class="k">as</span> <span class="n">status</span>
+<span class="k">from</span> <span class="n">tbl</span> <span class="n">t</span>
 </pre></div>
-<p>Tables:</p>
 <ul>
-<li>Students(ID, Name, Degree, Mentor)</li>
-<li>Professors(ID, Name, Chair)</li>
-<li>Courses(ID, Title, Faculty, Semester, Professor)</li>
-<li>Attends(Student, Course, Grade)</li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example-1">Example 1<a class="anchor-link" href="#Example-1">&#182;</a></h2><p>Find the ID of all students who failed at least one exam.</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">Student</span>
-<span class="k">FROM</span> <span class="n">Attends</span>
-<span class="k">WHERE</span> <span class="n">Grade</span> <span class="o">&gt;</span> <span class="mi">5</span>
-</pre></div>
-<p>Tables:</p>
-<ul>
-<li>Students(ID, Name, Degree, Mentor)</li>
-<li>Professors(ID, Name, Chair)</li>
-<li>Courses(ID, Title, Faculty, Semester, Professor)</li>
-<li>Attends(Student, Course, Grade)</li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example-2">Example 2<a class="anchor-link" href="#Example-2">&#182;</a></h2><p>Find how many exams each student failed.</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="p">...</span>
-</pre></div>
-<p>Tables:</p>
-<ul>
-<li>Students(ID, Name, Degree, Mentor)</li>
-<li>Professors(ID, Name, Chair)</li>
-<li>Courses(ID, Title, Faculty, Semester, Professor)</li>
-<li>Attends(Student, Course, Grade)</li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example-2">Example 2<a class="anchor-link" href="#Example-2">&#182;</a></h2><p>Find how many exams each student failed.</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">Student</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
-<span class="k">FROM</span> <span class="n">Attends</span>
-<span class="k">WHERE</span> <span class="n">Grade</span> <span class="o">&gt;</span> <span class="mi">5</span>
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">Student</span>
-</pre></div>
-<p>Tables:</p>
-<ul>
-<li>Students(ID, Name, Degree, Mentor)</li>
-<li>Professors(ID, Name, Chair)</li>
-<li>Courses(ID, Title, Faculty, Semester, Professor)</li>
-<li>Attends(Student, Course, Grade)</li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example-3">Example 3<a class="anchor-link" href="#Example-3">&#182;</a></h2><p>Find how many exams each student failed, only for the students who failed at least 2.</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="p">...</span>
-</pre></div>
-<p>Tables:</p>
-<ul>
-<li>Students(ID, Name, Degree, Mentor)</li>
-<li>Professors(ID, Name, Chair)</li>
-<li>Courses(ID, Title, Faculty, Semester, Professor)</li>
-<li>Attends(Student, Course, Grade)</li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example-3">Example 3<a class="anchor-link" href="#Example-3">&#182;</a></h2><p>Find how many exams each student failed, only for the students who failed at least 2.</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">Student</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
-<span class="k">FROM</span> <span class="n">Attends</span>
-<span class="k">WHERE</span> <span class="n">Grade</span> <span class="o">&gt;</span> <span class="mi">5</span>
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">Student</span>
-<span class="k">HAVING</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
-</pre></div>
-<p>Tables:</p>
-<ul>
-<li>Students(ID, Name, Degree, Mentor)</li>
-<li>Professors(ID, Name, Chair)</li>
-<li>Courses(ID, Title, Faculty, Semester, Professor)</li>
-<li>Attends(Student, Course, Grade)</li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example-4">Example 4<a class="anchor-link" href="#Example-4">&#182;</a></h2><p>Find how many courses each student failed, only for the students who failed at least 2 exams.</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="p">...</span>
-</pre></div>
-<p>Tables:</p>
-<ul>
-<li>Students(ID, Name, Degree, Mentor)</li>
-<li>Professors(ID, Name, Chair)</li>
-<li>Courses(ID, Title, Faculty, Semester, Professor)</li>
-<li>Attends(Student, Course, Grade)</li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example-4">Example 4<a class="anchor-link" href="#Example-4">&#182;</a></h2><p>Find how many courses each student failed, only for the students who failed at least 2 exams.</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">Student</span><span class="p">,</span> <span class="k">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span> <span class="n">Course</span><span class="p">)</span>
-<span class="k">FROM</span> <span class="n">Attends</span>
-<span class="k">WHERE</span> <span class="n">Grade</span> <span class="o">&gt;</span> <span class="mi">5</span>
-<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">Student</span>
-<span class="k">HAVING</span> <span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span>
-</pre></div>
-<p>Tables:</p>
-<ul>
-<li>Students(ID, Name, Degree, Mentor)</li>
-<li>Professors(ID, Name, Chair)</li>
-<li>Courses(ID, Title, Faculty, Semester, Professor)</li>
-<li>Attends(Student, Course, Grade)</li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Transactions-and-ACID-properties">Transactions and ACID properties<a class="anchor-link" href="#Transactions-and-ACID-properties">&#182;</a></h1><ul>
-<li>When the data is read and modified by several clients at the same time, care must be taken</li>
-<li>Read/modify/write workflows especially vulnerable</li>
-<li>Transaction: a set of queries (reads and/or writes)<ul>
-<li>Atomicity: sequence of operations appears as as a single operation on the data<ul>
-<li>Either all operations succeed, or the all modifications are undone</li>
-</ul>
-</li>
-<li>Consistency: database invariants are always satisfied regardless of the outcome<ul>
-<li>Invariants: uniqueness, non-empty values, primary/foreign keys, etc.</li>
-</ul>
-</li>
-<li>Isolation: different transactions cannot "see" each other<ul>
-<li>Order of transactions does not matter</li>
-</ul>
-</li>
-<li>Durability: once completed, the modifications are permanent<ul>
-<li>Useful in case of crashes</li>
-</ul>
-</li>
-<li>All of this is handled automatically by the DBMS<ul>
-<li>Users only need to declare start/end and outcome of the transaction</li>
-</ul>
-</li>
+<li>tbl has columns id, timestamp, status, where status can be null.</li>
+<li>goal is to fill null status with most recent non-null status (of the same id)</li>
+<li>need index on (id, timestamp) to be quick</li>
 </ul>
 </li>
 </ul>
@@ -13950,50 +15531,8 @@ FROM &lt;source table(s)&gt;
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Interfacing-to-a-RDBMS">Interfacing to a RDBMS<a class="anchor-link" href="#Interfacing-to-a-RDBMS">&#182;</a></h1><p>Three types of clients</p>
-<ol>
-<li>Command line clients</li>
-<li>Graphical clients</li>
-<li>Programmatic access</li>
-</ol>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Command-line-clients">Command line clients<a class="anchor-link" href="#Command-line-clients">&#182;</a></h2><p>Enter SQL queries and administrative commands directly from the command line:</p>
-
-<pre><code>$ sqlite3
-SQLite version 3.32.3 2020-06-18 14:00:33
-Enter ".help" for usage hints.
-Connected to a transient in-memory database.
-Use ".open FILENAME" to reopen on a persistent database.
-sqlite&gt;</code></pre>
-
-<pre><code>$ psql -U user -h 10.0.6.12 -p 21334 -d database
-psql (11.1, server 11.0)
-Type "help" for help.
-
-postgres=#</code></pre>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Graphical-clients">Graphical clients<a class="anchor-link" href="#Graphical-clients">&#182;</a></h2><p>Database-specific:</p>
-<ul>
-<li>pgAdmin (PostgreSQL)</li>
-<li>SQLite Browser (SQLite)</li>
-<li>MySQL Workbench (MySQL)</li>
-</ul>
-<p>General purpose:</p>
-<ul>
-<li><a href="http://squirrel-sql.sourceforge.net">SQuirreL</a></li>
-<li><a href="http://sqladmin.sourceforge.net/">SQLAdmin</a></li>
+<h2 id="examples-of-complex-queries">examples of complex queries<a class="anchor-link" href="#examples-of-complex-queries">&#182;</a></h2><ul>
+<li>TODO</li>
 </ul>
 
 </div>
@@ -14002,35 +15541,21 @@ postgres=#</code></pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="SQuirreL-example:-querying">SQuirreL example: querying<a class="anchor-link" href="#SQuirreL-example:-querying">&#182;</a></h3><p><img src="http://squirrel-sql.sourceforge.net/screenshots/15_edit_result.png" alt=""></p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="SQuirreL-example:-visualizing-tables">SQuirreL example: visualizing tables<a class="anchor-link" href="#SQuirreL-example:-visualizing-tables">&#182;</a></h3><p><img src="http://squirrel-sql.sourceforge.net/screenshots/7_graph.png" alt=""></p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Programmatic-Access">Programmatic Access<a class="anchor-link" href="#Programmatic-Access">&#182;</a></h2><p>Two types of APIs:</p>
-<ol>
-<li>High-level: Object-relational mapping (ORM)<ul>
-<li>Each table has a corresponding class in the code</li>
-<li>Operations on objects are automatically translated on queries</li>
-<li>These libraries can work with many SQL databases</li>
+<h2 id="programmatically-interfacing-to-a-RDBMS">programmatically interfacing to a RDBMS<a class="anchor-link" href="#programmatically-interfacing-to-a-RDBMS">&#182;</a></h2><ul>
+<li>connections</li>
+<li>cursors</li>
+<li>sql injection and proper escaping</li>
 </ul>
-</li>
-<li>Low-level: Directly write SQL queries as strings<ul>
-<li>Usually tied to a specific type of SQL database</li>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="transactions-and-ACID">transactions and ACID<a class="anchor-link" href="#transactions-and-ACID">&#182;</a></h2><ul>
+<li>heh</li>
 </ul>
-</li>
-</ol>
 
 </div>
 </div>
@@ -14038,223 +15563,7 @@ postgres=#</code></pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="SQLAlchemy:-ORM-in-Python">SQLAlchemy: ORM in Python<a class="anchor-link" href="#SQLAlchemy:-ORM-in-Python">&#182;</a></h3><p>Example from <a href="https://www.pythoncentral.io/overview-sqlalchemys-expression-language-orm-queries/">pythoncentral.io</a>.</p>
-<p>Tables:</p>
-<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Department</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;department&#39;</span>
-    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
-    <span class="n">employees</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s1">&#39;Employee&#39;</span><span class="p">,</span> <span class="n">secondary</span><span class="o">=</span><span class="s1">&#39;department_employee&#39;</span><span class="p">)</span>
-
-<span class="k">class</span> <span class="nc">Employee</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;employee&#39;</span>
-    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
-    <span class="n">departments</span> <span class="o">=</span> <span class="n">relationship</span><span class="p">(</span><span class="s1">&#39;Department&#39;</span><span class="p">,</span> <span class="n">secondary</span><span class="o">=</span><span class="s1">&#39;department_employee&#39;</span><span class="p">)</span>
-
-<span class="k">class</span> <span class="nc">DepartmentEmployee</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
-    <span class="n">__tablename__</span> <span class="o">=</span> <span class="s1">&#39;department_employee&#39;</span>
-    <span class="n">department_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;department.id&#39;</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">employee_id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">,</span> <span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;employee.id&#39;</span><span class="p">),</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Inserting-data-in-SQLAlchemy">Inserting data in SQLAlchemy<a class="anchor-link" href="#Inserting-data-in-SQLAlchemy">&#182;</a></h3><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
-<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s1">&#39;sqlite:///&#39;</span><span class="p">)</span>
-
-<span class="kn">from</span> <span class="nn">sqlalchemy.orm</span> <span class="kn">import</span> <span class="n">sessionmaker</span>
-<span class="n">session</span> <span class="o">=</span> <span class="n">sessionmaker</span><span class="p">()</span>
-<span class="n">session</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
-<span class="n">Base</span><span class="o">.</span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
-
-<span class="n">s</span> <span class="o">=</span> <span class="n">session</span><span class="p">()</span>
-<span class="n">john</span> <span class="o">=</span> <span class="n">Employee</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;john&#39;</span><span class="p">)</span>
-<span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">john</span><span class="p">)</span>
-<span class="n">it_department</span> <span class="o">=</span> <span class="n">Department</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;IT&#39;</span><span class="p">)</span>
-<span class="n">it_department</span><span class="o">.</span><span class="n">employees</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">john</span><span class="p">)</span>
-<span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">it_department</span><span class="p">)</span>
-<span class="n">s</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Querying-in-SQLAlchemy">Querying in SQLAlchemy<a class="anchor-link" href="#Querying-in-SQLAlchemy">&#182;</a></h3><p>asd</p>
-<div class="highlight"><pre><span></span><span class="n">find_marry</span> <span class="o">=</span> <span class="n">select</span><span class="p">([</span>
-    <span class="n">Employee</span><span class="o">.</span><span class="n">id</span>
-<span class="p">])</span><span class="o">.</span><span class="n">select_from</span><span class="p">(</span>
-    <span class="n">Employee</span><span class="o">.</span><span class="n">__table__</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">DepartmentEmployee</span><span class="p">)</span>
-<span class="p">)</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span>
-    <span class="n">Employee</span><span class="o">.</span><span class="n">id</span>
-<span class="p">)</span><span class="o">.</span><span class="n">having</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="n">count</span><span class="p">(</span>
-    <span class="n">DepartmentEmployee</span><span class="o">.</span><span class="n">department_id</span>
-<span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
-
-<span class="n">rs</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">find_marry</span><span class="p">)</span> 
-<span class="n">rs</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>  <span class="c1"># result: [(2,)]</span>
-</pre></div>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Accessing-SQLite-in-Python">Accessing SQLite in Python<a class="anchor-link" href="#Accessing-SQLite-in-Python">&#182;</a></h3><p>Example from <a href="https://docs.python.org/3/library/sqlite3.html">python3.org</a></p>
-<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlite3</span>
-<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">&#39;example.db&#39;</span><span class="p">)</span>
-
-<span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-
-<span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;CREATE TABLE stocks</span>
-<span class="s1">             (date text, trans text, symbol text, qty real, price real)&#39;&#39;&#39;</span><span class="p">)</span>
-
-<span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO stocks VALUES (&#39;2006-01-05&#39;,&#39;BUY&#39;,&#39;RHAT&#39;,100,35.14)&quot;</span><span class="p">)</span>
-
-<span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
-
-<span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Querying-SQLite-in-Python">Querying SQLite in Python<a class="anchor-link" href="#Querying-SQLite-in-Python">&#182;</a></h3><div class="highlight"><pre><span></span><span class="n">purchases</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;2006-03-28&#39;</span><span class="p">,</span> <span class="s1">&#39;BUY&#39;</span><span class="p">,</span> <span class="s1">&#39;IBM&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mf">45.00</span><span class="p">),</span>
-             <span class="p">(</span><span class="s1">&#39;2006-04-05&#39;</span><span class="p">,</span> <span class="s1">&#39;BUY&#39;</span><span class="p">,</span> <span class="s1">&#39;MSFT&#39;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mf">72.00</span><span class="p">),</span>
-             <span class="p">(</span><span class="s1">&#39;2006-04-06&#39;</span><span class="p">,</span> <span class="s1">&#39;SELL&#39;</span><span class="p">,</span> <span class="s1">&#39;IBM&#39;</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mf">53.00</span><span class="p">)]</span>
-
-<span class="n">c</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="s1">&#39;INSERT INTO stocks VALUES (?,?,?,?,?)&#39;</span><span class="p">,</span> <span class="n">purchases</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM stocks WHERE price&lt;? ORDER BY price&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">2000</span><span class="p">,]):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-
-<span class="c1"># (&#39;2006-03-28&#39;, &#39;BUY&#39;, &#39;IBM&#39;, 1000, 45.0)</span>
-<span class="c1"># (&#39;2006-04-06&#39;, &#39;SELL&#39;, &#39;IBM&#39;, 500, 53.0)</span>
-<span class="c1"># (&#39;2006-04-05&#39;, &#39;BUY&#39;, &#39;MSFT&#39;, 1000, 72.0)</span>
-</pre></div>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Programmatic-access-to-SQL-databases">Programmatic access to SQL databases<a class="anchor-link" href="#Programmatic-access-to-SQL-databases">&#182;</a></h2><p>Common concepts:</p>
-<table>
-<thead><tr>
-<th>SQLite</th>
-<th>SQLAlchemy</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Connection</td>
-<td>Engine</td>
-<td>The database object</td>
-</tr>
-<tr>
-<td>Cursor</td>
-<td>Session</td>
-<td>A transaction</td>
-</tr>
-</tbody>
-</table>
-<p>General workflow:</p>
-<ol>
-<li>Obtain a connection<ul>
-<li>Use a connection pool if performance is a concern</li>
-</ul>
-</li>
-<li>Obtain a cursor</li>
-<li>Execute queries</li>
-<li>Close cursor</li>
-<li>Possibly repeat...</li>
-<li>Close connection</li>
-</ol>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="SQL-injection">SQL injection<a class="anchor-link" href="#SQL-injection">&#182;</a></h3><ul>
-<li>An once-popular cyber-attack on SQL databases</li>
-<li>Caused by improper escaping of arguments coming from external users (e.g. in a web form)</li>
-<li>Never trust user input!</li>
-</ul>
-<p>Example:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_courses</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">semester</span><span class="p">):</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
-        <span class="s2">&quot;SELECT * FROM Courses WHERE Semester={}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">semester</span><span class="p">)</span>
-    <span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-
-<span class="c1"># later on...</span>
-<span class="n">find_courses</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s2">&quot;&#39;&#39;; DROP TABLE Courses; --&quot;</span><span class="p">)</span>
-</pre></div>
-<p>This will execute <strong>two</strong> queries:</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Courses</span> <span class="k">WHERE</span> <span class="n">Semester</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">;</span>
-<span class="k">DROP</span> <span class="k">TABLE</span> <span class="n">Courses</span><span class="p">;</span> <span class="c1">--</span>
-</pre></div>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Avoiding-SQL-injection">Avoiding SQL injection<a class="anchor-link" href="#Avoiding-SQL-injection">&#182;</a></h3><p>Let the API handle escaping for you:</p>
-<div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find_courses</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="n">semester</span><span class="p">):</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">c</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
-        <span class="s2">&quot;SELECT * FROM Courses WHERE Semester=?&quot;</span><span class="p">,</span>
-        <span class="p">[</span><span class="n">semester</span><span class="p">]</span>
-    <span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
-
-<span class="c1"># later on...</span>
-<span class="n">find_courses</span><span class="p">(</span><span class="n">conn</span><span class="p">,</span> <span class="s2">&quot;&#39;&#39;; DROP TABLE Courses; --&quot;</span><span class="p">)</span>
-</pre></div>
-<p>This will execute <strong>one</strong> query:</p>
-<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">Courses</span> <span class="k">WHERE</span> <span class="n">Semester</span><span class="o">=</span><span class="s1">&#39;&#39;&#39;&#39;&#39;; DROP TABLE Courses; --&#39;</span>
-</pre></div>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Where-should-I-start-from?">Where should I start from?<a class="anchor-link" href="#Where-should-I-start-from?">&#182;</a></h1><p><a href="https://sqlite.org/index.html">SQLite</a> is very simple and scales well.</p>
-<p><a href="https://www.postgresql.org/">PostgreSQL</a> for more complicated requirements / large scale data processing.</p>
-<p>Also frequently used: <a href="https://www.mysql.com/">MySQL</a></p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Advanced-topics">Advanced topics<a class="anchor-link" href="#Advanced-topics">&#182;</a></h1>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Indexing">Indexing<a class="anchor-link" href="#Indexing">&#182;</a></h2><ul>
+<h2 id="advanced:-indexing">advanced: indexing<a class="anchor-link" href="#advanced:-indexing">&#182;</a></h2><ul>
 <li>depending on your query and how you express it, it may be quite slow</li>
 <li>the DBMS tries to optimize every query, but sometimes it fails</li>
 <li>when most of the time is spent on joins and lookups, creating <em>indices</em> can greatly speed up the query</li>
@@ -14268,29 +15577,18 @@ postgres=#</code></pre>
 <li><code>CREATE INDEX &lt;index name&gt; ON &lt;table name&gt;(&lt;list of columns&gt;)</code></li>
 </ul>
 </li>
-<li>a table can have many indices<ul>
-<li>an index is always created automatically for primary keys</li>
-<li>all other unique keys must also have an index</li>
-<li>indices on foreign keys <em>might</em> be useful</li>
-<li>WHERE/JOIN are much faster when there is an index on one of the columns</li>
+<li>a table can have many indices, but one is always created automatically for primary keys<ul>
+<li>all otherunique keys must also have an index</li>
+<li>joins are much faster when there is an index on one of the columns</li>
 </ul>
 </li>
 <li>if a query is slow and/or executed very frequently, consider adding an index on columns used in the WHERE/JOIN</li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Main-types-of-index">Main types of index<a class="anchor-link" href="#Main-types-of-index">&#182;</a></h2><ul>
-<li>Tree-based: O(log N) access, can be used to quickly answer queries like <code>WHERE L &lt; column &lt; U</code><ul>
-<li>Branching factor in the order of 1000s</li>
+<li>types of index:<ul>
+<li>tree-based: O(NlogN) access, can be used to quickly answer queries like <code>WHERE L &lt; column &lt; U</code></li>
+<li>hash-based: O(1) access, cannot answer range queries</li>
+<li>clustered index: table is physically sorted by the columns</li>
 </ul>
 </li>
-<li>Hash-based: O(1) access, cannot answer range queries</li>
-<li>Clustered index: table is physically sorted by the columns</li>
 </ul>
 
 </div>
@@ -14299,7 +15597,7 @@ postgres=#</code></pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Query-plans">Query plans<a class="anchor-link" href="#Query-plans">&#182;</a></h2><ul>
+<h2 id="advanced:-query-plans">advanced: query plans<a class="anchor-link" href="#advanced:-query-plans">&#182;</a></h2><ul>
 <li>understanding why a query is slow is not trivial</li>
 <li>the query plan is produced by the optimizer and shows exactly what and how is done to execute the query</li>
 <li>it contains an estimated cost and can be augmented with the actual cost measured when executing the query</li>
