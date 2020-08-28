@@ -41,7 +41,9 @@ def set_slide_type(metadata, celltype):
               help="output file name to be saved as, autodetects jupytext")
 @click.option("--order", "slide_order", default=2, type=click.IntRange(0,), show_default=True, required=False,
               help="Number of # above which all are done as subslides")
-def main(basename, outname, slide_order):
+@click.option("--INDENT", "indentation", default=1, type=click.IntRange(0,), show_default=True, required=False,
+              help="Number of spaces to indent the json/ipynb output")              
+def main(basename, outname, slide_order, indentation):
     """automatically generate slide_type metadata for ipynb files
 
     :param basename: input ipynb name without .ipynb
@@ -76,13 +78,13 @@ def main(basename, outname, slide_order):
 
     # Saving new file
     with open(f"{outname}.ipynb", "w", encoding="utf-8") as outfile:
-        json.dump(notebook, fp=outfile)
+        json.dump(notebook, fp=outfile, indent=indentation)
     # Ensure time for jupytext is preserved
     if f"{basename}.py" in os.listdir():
         with open(f"{basename}.py", "r", encoding="utf-8") as infile:
             loaded = json.load(infile)
         with open(f"{outname}.py", "w", encoding="utf-8") as outfile:
-            json.dump(loaded, fp=outfile)
+            json.dump(loaded, fp=outfile, indent=indentation)
 
 
 if __name__ == "__main__":
