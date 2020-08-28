@@ -187,7 +187,6 @@
 # - sketch stage: data -> notebook -> insight
 # - production stage: data -> API -> insight
 
-
 # + [markdown] slideshow={"slide_type": "subslide"}
 # #### Next Level: Web-framework for open science access
 #
@@ -413,6 +412,9 @@ import this
 # + [markdown] slideshow={"slide_type": "subslide"}
 # #### ***Flat is better than nested.***
 #
+# -
+
+# ##### Original Example
 
 # + [markdown] slideshow={"slide_type": "fragment"}
 # ```python
@@ -420,6 +422,9 @@ import this
 # upper_slices = tuple([(slice(2, None) if i == ax else (slice(1, -1)) if _contains_axis(axes, i, rank) else slice(None)) for i in dims])
 # lower_slices = tuple([(slice(-2) if i == ax else (slice(1, -1)) if _contains_axis(axes, i, rank) else slice(None)) for i in dims])
 # ```
+# -
+
+# ##### Making sense of original
 
 # + [markdown] slideshow={"slide_type": "subslide"}
 # ```python
@@ -428,6 +433,9 @@ import this
 # u_slices = tuple([(slice(2, None) if i == ax else slice(1, -1) if _contains_axis(axes, i, rank) else slice(None)) for i in dims])
 # l_slices = tuple([(slice(-2)      if i == ax else slice(1, -1) if _contains_axis(axes, i, rank) else slice(None)) for i in dims])
 # ```
+# -
+
+# ##### Denesting step 1
 
 # + [markdown] slideshow={"slide_type": "subslide"}
 # ```python
@@ -451,6 +459,9 @@ import this
 # u_slices = tuple(u_slices)
 # l_slices = tuple(l_slices)
 # ```
+# -
+
+# ##### Final denesting
 
 # + [markdown] slideshow={"slide_type": "subslide"}
 # ```python
@@ -808,6 +819,8 @@ extrapolation_map[extrapolation]
 # AttributeError('This team is too precious to touch!',)
 # ```
 
+# ##### Intrinsic Decorators
+
 # Speaking of decorators, Python provides a ton of useful decorators!
 #
 # fore example: `Least-Recently-Used Cache` to reuse previous computations automatically
@@ -855,11 +868,33 @@ extrapolation_map[extrapolation]
 #     raise ApplicationError('A sequence type is expected')
 # ```
 
+# ###### ABC PEP
+
+# [Abstract Base Clases PEP 3119](https://www.python.org/dev/peps/pep-3119/)
+
 # ##### Type Hinting
 
 def greeting(name: str) -> str:
     return 'Hello ' + name
 
+# ```python
+# class Team:
+#     _members = ['Jan', 'Viliam', 'Ilya']
+#
+#     @property
+#     def members(self):
+#         return list(self._members)
+#
+#     @members.setter
+#     def members(self, value):
+#         raise AttributeError('This team is too precious to touch!')
+#
+# >>> team = Team()
+# >>> print(team.members)
+# ['Jan', 'Viliam', 'Ilya']
+# >>> team.members = []
+# AttributeError('This team is too precious to touch!',)
+# ```
 
 # You can use aliases
 
@@ -906,6 +941,8 @@ inproduct.__annotations__
 # - start with #
 # - followed by a single space
 
+# ##### Example
+
 # Inline comments are unnecessary and in fact distracting if they state the obvious. Don't do this:
 # ```python
 # x = x + 1                 # Increment x
@@ -920,12 +957,12 @@ inproduct.__annotations__
 # #### Comments are important, but Documentation and schematics are even more important
 
 # + [markdown] slideshow={"slide_type": "fragment"}
-# <img src="https://preview.redd.it/jm8b5iwoq6p11.png?width=640&crop=smart&auto=webp&s=f4f484b59333e96555d8076b13dfbc2f8fc2b5b3" width=400>
+# <img src="https://preview.redd.it/jm8b5iwoq6p11.png?width=640&crop=smart&auto=webp&s=f4f484b59333e96555d8076b13dfbc2f8fc2b5b3" width=480>
 # -
 
 # #### Docstrings
 
-# <img src="https://preview.redd.it/a5skfy5y88x11.jpg?width=640&crop=smart&auto=webp&s=edee581af2812ad4f4469d13e79e38d9b2dd3f06" width=300>
+# <img src="https://preview.redd.it/a5skfy5y88x11.jpg?width=640&crop=smart&auto=webp&s=edee581af2812ad4f4469d13e79e38d9b2dd3f06" width=360>
 
 # ##### Reading code you wrote a month ago
 #
@@ -973,6 +1010,8 @@ print(f"{len(undoc)/num:.2%}")
 
 # Module level "dunders" (i.e. names with two leading and two trailing underscores) such as __all__, __author__, __version__, etc. should be placed after the module docstring but before any import statements except from __future__ imports. Python mandates that future-imports must appear in the module before any other code except docstrings:
 
+# ###### Example
+
 # ```python
 # """This is the example module.
 #
@@ -1001,15 +1040,15 @@ print(f"{len(undoc)/num:.2%}")
 # ###### Single Line Docstring
 
 # > Triple quotes are used even though the string fits on one line. This makes it easy to later expand it.
-#
+
 # > The closing quotes are on the same line as the opening quotes. This looks better for one-liners.
-#
+
 # > There's no blank line either before or after the docstring.
-#
+
 # > The docstring is a phrase ending in a period. It prescribes the function or method's effect as a command ("Do this", "Return that"), not as a description; e.g. don't write "Returns the pathname ...".
-#
+
 # > The one-line docstring should NOT be a "signature" reiterating the function/method parameters (which can be obtained by introspection)
-#
+
 # ```python
 # """Do X and return a list."""
 # ``` 
@@ -1099,13 +1138,16 @@ print(f"{len(undoc)/num:.2%}")
 # - 88 character line limit
 #
 
+# ###### Example
+
 # ```python
-# # in:
 # def very_important_function(template: str, *variables, file: os.PathLike, engine: str, header: bool = True, debug: bool = False):
 #     """Applies `variables` to the `template` and writes to `file`."""
 #     with open(file, 'w') as f:
 #         ...
-#
+# ```
+
+# ```python
 # # out:
 # def very_important_function(
 #     template: str,
@@ -1119,6 +1161,8 @@ print(f"{len(undoc)/num:.2%}")
 #     with open(file, "w") as f:
 #         ...
 # ```
+
+# ###### In VSCode
 
 # Running in VSCode
 #

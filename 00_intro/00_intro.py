@@ -16,10 +16,12 @@
 # # Why Practical Training is Crucial
 
 # ## Why bridging the gap is important
-#
+
 # <img src="https://preview.redd.it/zj4noiwbf7g31.jpg?width=640&crop=smart&auto=webp&s=75069427a53b85daa79284f096329d5a70c34719" width=300>
-#
+
 # <img src="https://external-preview.redd.it/2htFTGm3vrPB41z1b_jHeZ122-lGhMK6aKphMGwShXA.jpg?width=640&crop=smart&auto=webp&s=1b05de40142c59d22e42463b1804e187e550f46a" width=300>
+
+# ### How to bridge the gap
 
 # There are plenty of expensive courses, thick books, and jaded postdocs telling you how to do things in theory - and that's great! 
 
@@ -111,9 +113,11 @@
 #     - Unit Tests
 #     - Dockers
 #     - APIs
+
 # 4. Best Practices in Data Science
 #     - Machine Learning 
 #     - Coding
+
 # 5. Processing Data Efficiently
 #     - Tensorflow
 #     - Network Architeictures & Applications
