@@ -1,0 +1,5 @@
+
+# The service configuration used in the Dockerfile.
+
+# knn model
+model_path: /app/models/finalized_model.sav
