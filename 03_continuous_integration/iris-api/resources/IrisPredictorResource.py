@@ -56,9 +56,13 @@ class IrisPredictorResource():
                 return
             """
             @TODO: 
-            check the quality of the input file
+            check the quality of the input file.
+            In case the quality of the input is not valid, 
+            send back the correct resp.body and resp.status
             """
 
+            ## In this part, you consider the input is correct and 
+            ## just need to return the result
             prediction = predict_knn(features, self.model)
 
             self.logger.info('IrisPredictor: the prediction is %s' % prediction)
@@ -66,7 +70,10 @@ class IrisPredictorResource():
 
             self.logger.info('IrisPredictor: Sending the results \n')
             
-            resp.status = falcon.HTTP_200
+            """
+            TODO: use the correct HTTP status code
+            """
+            resp.status = ## FILL HERE! ##
             resp.body = json.dumps(response) + '\n'
 
         except Exception as e:
