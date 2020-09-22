@@ -7,4 +7,4 @@ notebooks as text files
 
 ## Official flyer for the (postponed) lecture series
 
-![FlyerImage](https://github.com/Mu-DS/practical_training/blob/master/Info%20Flyer/MUDS_Practical_Training_Flyer_2020.png)
+![FlyerImage](https://github.com/Mu-DS/practical_training/blob/master/Info%20Flyer/MUDS_Practical_Training_Flyer_2020_workshop.jpg)
