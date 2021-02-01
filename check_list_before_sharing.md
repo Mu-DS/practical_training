@@ -22,6 +22,11 @@ Research needs more people like you!
     - [ ] Hierarchy?
 
 * [ ] Do ALL public functions have docstrings?
+
+    - [ ] Does it include the inputs and their format?
+    - [ ] Does it include the ouputs and their format?
+    - [ ] Does it include the exceptions that it throws?
+
 * [ ] Remember that function that took you ages to write? Read the code: if you can immediately understand it you are good - otherwise, rewrite it to be more explicit.
 * [ ] Does ANY functions have >2 bracket-pairs of any kind? Split it into more lines.
 * [ ] Have ALL your abbreviations been defined in the same file?
@@ -42,6 +47,7 @@ Research needs more people like you!
 
     - [ ] Does it guarantee ALL functionality the function allows?
     - [ ] Are your mathematical methods tested for convergence?
+    - [ ] Have you included the edge cases in your tests?
     - [ ] Yes, even wrappers around standard libraries.
 
 * [ ] Have you set up a CI?
@@ -52,12 +58,17 @@ Research needs more people like you!
     - [ ] Does it run all notebooks?
 
 * [ ] Has it passed all tests for all versions?
+* [ ] Have you added `requirements.txt` file in your repo?
+* [ ] Have you added the correct `.gitignore` file in your repo?
+* [ ] Does every folder contain a markdown with correct and up-to-date explanation?
+* [ ] Does adding a docker help in reproduciblity of your work? If so, have you implemented it?
 * [ ] Have you checked every box? Congratulations, you can now share the code :)
 
 ## Automating the boring stuff
 
 * [ ] Use **black** auto-formatting on save
 * [ ] Use **pylint** in CI to fail when stuff (e.g. docstrings) are missing
+* [ ] Use **codacy** to check the quality of the whole code
 * [ ] Use **TravisCI** to test against the newest versions from pip
 * [ ] Use **codecov** to ensure you are not missing unit tests
 
