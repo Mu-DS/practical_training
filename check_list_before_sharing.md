@@ -23,7 +23,7 @@ Research needs more people like you!
 
 * [ ] Do ALL public functions have docstrings?
 * [ ] Remember that function that took you ages to write? Read the code: if you can immediately understand it you are good - otherwise, rewrite it to be more explicit.
-* [ ] Do ANY functions have >2 brackets opening? Split it into more lines.
+* [ ] Does ANY functions have >2 bracket-pairs of any kind? Split it into more lines.
 * [ ] Have ALL your abbreviations been defined in the same file?
 * [ ] No, not everyone knows that abbreviation...
 * [ ] Have you set up an auto-formatter?
