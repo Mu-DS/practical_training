@@ -71,6 +71,7 @@ Research needs more people like you!
 * [ ] Use **codacy** to check the quality of the whole code
 * [ ] Use **TravisCI** to test against the newest versions from pip
 * [ ] Use **codecov** to ensure you are not missing unit tests
+* [ ] Use **mipy** for type hints and checking [link](https://pypi.org/project/mipy/) 
 
 ## Have more tips?
 
